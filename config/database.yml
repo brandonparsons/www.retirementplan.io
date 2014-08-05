@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+test:
+  <<: *default
+  database: retirementplan_www_test
+
+development:
+  <<: *default
+  database: retirementplan_www_development
+
+production:
+  <<: *default
+  database: retirementplan_www_production
