@@ -3,11 +3,14 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.4'
 gem 'pg'
+gem 'thin'
 
 gem 'jekyll'
 gem 'nokogiri'
 gem 'redcarpet'
 gem 'rouge'
+
+gem 'slim'
 
 gem 'figaro'
 
@@ -18,6 +21,17 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'execjs'
 
+group :production do
+end
+
 group :development do
   gem 'spring'
+
+  gem 'hirb'
+  gem 'awesome_print'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+  gem 'pry-byebug'
 end

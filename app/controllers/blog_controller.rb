@@ -1,23 +1,14 @@
 class BlogController < ApplicationController
 
-  before_filter :find_post, only: [:show]
-
   def index
-    @posts = BlogPost.all
+    @posts = Post.all
+    fresh_when etag: @posts, public: true
   end
 
   def show
-    if stale?(@post, public: true)
-      render text: @post.html
-    end
-  end
-
-
-  private
-
-  def find_post
-    @post = BlogPost.find params[:id]
+    @post = Post.find params[:id]
     redirect_to blog_index_path unless @post
+    fresh_when etag: @post, last_modified: @post.updated_at, public: true
   end
 
 end

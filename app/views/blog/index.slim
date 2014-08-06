@@ -1,0 +1,8 @@
+- cache @posts do
+
+  h1 Posts
+
+  - @posts.each do |post|
+    p= link_to post.title, post.path
+    p= post.formatted_date
+    p= post.excerpt

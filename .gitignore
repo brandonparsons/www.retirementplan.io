@@ -16,3 +16,5 @@
 /tmp
 
 /blog_content
+
+/config/application.yml

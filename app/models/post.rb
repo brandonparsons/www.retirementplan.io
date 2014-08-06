@@ -1,8 +1,13 @@
-class BlogPost
+class Post
 
   include ActionView::Helpers::TextHelper
 
   attr_reader :slug
+
+
+  #################
+  # CLASS METHODS #
+  #################
 
   class << self
 
@@ -14,17 +19,23 @@ class BlogPost
       all.detect{ |post| post.slug == slug }
     end
 
-    def directory
-      Rails.root.join 'blog_content'
-    end
 
     private
 
     def all_slugs
-      @all_slugs ||= Dir.glob("#{directory}/*.md").map { |f| File.basename(f,'.md') }
+      Dir.glob("#{directory}/*.md").map { |f| File.basename(f,'.md') }
+    end
+
+    def directory
+      Rails.root.join 'blog_content'
     end
 
   end
+
+
+  ####################
+  # INSTANCE METHODS #
+  ####################
 
   def initialize(slug)
     @slug = slug
@@ -37,16 +48,21 @@ class BlogPost
   end
 
   def date
-    Date.parse(slug)
+    Date.parse(slug).to_time
   end
 
-  def date_formatted
+  def tags
+    @data['tags'] || []
+  end
+
+  def formatted_date
     day_format = ActiveSupport::Inflector.ordinalize(date.day)
     date.strftime "%B #{day_format}, %G"
   end
 
   def html
-    Rails.cache.fetch("#{cache_key}/html") { to_html }
+    # Rails.cache.fetch("#{cache_key}/html") { to_html }
+    to_html
   end
 
   def excerpt
@@ -67,8 +83,11 @@ class BlogPost
   end
 
   def updated_at
-    @data['updated'] || date
-    # File.mtime(file_path)
+    if updated_yaml_frontmatter = @data['updated']
+      return Date.parse(updated_yaml_frontmatter).to_time.utc
+    else
+      return date.utc
+    end
   end
 
   def cache_key
@@ -91,11 +110,12 @@ class BlogPost
   end
 
   def file_path
-    self.class.directory.join "#{slug}.md"
+    self.class.send(:directory).join "#{slug}.md"
   end
 
   def file_data
-    Rails.cache.fetch("#{cache_key}/markdown") { File.read(file_path) }
+    # Rails.cache.fetch("#{cache_key}/markdown") { File.read(file_path) }
+    File.read(file_path)
   end
 
   def markdown
