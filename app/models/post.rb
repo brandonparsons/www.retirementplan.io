@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class Post
 
   include ActionView::Helpers::TextHelper
@@ -19,15 +21,51 @@ class Post
       all.detect{ |post| post.slug == slug }
     end
 
+    def run_update
+      tmp_post_content_location = Rails.root.join "tmp", "blog_content"
+
+      if Dir.exists? tmp_post_content_location
+        `cd #{tmp_post_content_location} && #{git_pull}`
+      else
+        `#{git_clone} #{tmp_post_content_location}`
+      end
+
+      copy_directory("#{tmp_post_content_location}/posts", blog_content_directory)
+      copy_directory("#{tmp_post_content_location}/images", "#{public_dir}/images")
+    end
 
     private
 
     def all_slugs
-      Dir.glob("#{directory}/*.md").map { |f| File.basename(f,'.md') }
+      Dir.glob("#{blog_content_directory}/*.md").map { |f| File.basename(f,'.md') }
     end
 
-    def directory
+    def blog_content_directory
       Rails.root.join 'blog_content'
+    end
+
+    def bin_dir
+      Rails.root.join "bin"
+    end
+
+    def ssh_key_location
+      Rails.root.join ENV['BLOG_DEPLOY_KEY_LOCATION']
+    end
+
+    def git_pull
+      "#{bin_dir}/git-as.sh #{ssh_key_location} pull"
+    end
+
+    def git_clone
+      "#{bin_dir}/git-as.sh #{ssh_key_location} clone git@#{ENV['BLOG_GIT_REPO_URL']}"
+    end
+
+    def public_dir
+      Rails.root.join "public"
+    end
+
+    def copy_directory(from, to)
+      `cp -a #{from}/. #{to}/`
     end
 
   end
@@ -110,7 +148,7 @@ class Post
   end
 
   def file_path
-    self.class.send(:directory).join "#{slug}.md"
+    self.class.send(:blog_content_directory).join "#{slug}.md"
   end
 
   def file_data

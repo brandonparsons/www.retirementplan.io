@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 
-/blog_content
-
 /config/application.yml
+
+/blog_content
+/public/images
