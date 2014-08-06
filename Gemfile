@@ -3,14 +3,14 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.4'
 gem 'pg'
-gem 'thin'
 
+gem 'slim'
+
+# Rendering blog posts
 gem 'jekyll'
 gem 'nokogiri'
 gem 'redcarpet'
 gem 'rouge'
-
-gem 'slim'
 
 gem 'figaro'
 
@@ -22,9 +22,12 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'execjs'
 
 group :production do
+  gem 'unicorn'
 end
 
 group :development do
+  gem 'thin'
+
   gem 'spring'
 
   gem 'hirb'
