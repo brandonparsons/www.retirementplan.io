@@ -1,0 +1,45 @@
+---
+layout: static_page
+title: Frequently Asked Questions
+---
+
+ruby:
+
+  questions = {
+    "How does asset allocation compare to active management in terms of contribution to performance?" => "A famous study completed in 2000 (Roger G. Ibbotson and Paul D. Kaplan, 'Does Asset Allocation Policy Explain 40%, 90%, or 100% of Performance?', The Financial Analysts Journal, January/February 2000) showed that the single most important factor in explaining portfolio performance was asset allocation - not active management.  In other words, the most important thing to get right in meeting your retirement goals is to be invested in the right things - not necessarily be in the flashiest fund.",
+
+    "Where did you get your survey data from?" => "We used a published research paper on risk aversion (Fabian Wenner, 2006) as a basis of comparison for personal risk tolerance.  This paper uses survey data from the US Federal Reserve on over 3000 households.",
+
+    # "How are the quick links on the left sidebar used?" => "The first option ('Rebalance only') is for when you don't have any additional funds, but want to ensure your portfolio is balanced.  Easy Retirement Planning will determine the ETF units to buy and sell to get you back in balance.  We will sell enough shares to balance out your purchases - at most you should only have to spend a few dollars due to rounding.\n\rThe second option ('Have money to invest?'') will allow you to invest an additional sum of money, and simulaneously rebalance your portfolio.\n\rThe third option ('Purchased something?') is for when you've added additional units of ETFs outside of Easy Retirement Planning an need to update our database.",
+
+    "How did you obtain statistically significant data for comparison of my questionnaire answers?" => "We used a published research paper on risk aversion (Fabian Wenner, 2006) as a basis of comparison for personal risk tolerance.  This paper uses survey data from the US Federal Reserve on over 3000 households.",
+
+    "What does utility represent when it comes to optimizing my personal risk tolerance and return goals?" => "Studies show that an individual's personal happiness generally increases up to an income of about $75k per year, and then on average does not increase with increasing salary beyond that point.  However, common sense shows that people will accept a very steady (and secure) job paying less than that amount, or alternatively take very risky jobs paying more.  Why is that the case?  Some people obviously put a higher value on incremental earnings above $75k, whereas others would trade less money for a more secure position.  A similar concept has been shown to exist with investments - people place differing value on additional risky returns.",
+
+    "Why do I need to verify my e-mail address with Easy Retirement Planning?" => "You will be sent e-mail notifications as part of Easy Retirement Planning's product offering.  Therefore we need to ensure the e-mail we have on file is accurate, and that it does not get wrongly flagged as spam by your e-mail provider.",
+
+    # "Why is dual opt-in required prior to receiving the newsletter?" => "Dual opt-in is required for our newsletter to ensure we comply with Canada's Fighting Internet and Wireless Spam Act (FISA).",
+
+    "Please explain more about my asset class options." => "Equities are shares of a company - what you would typically think of when investing in the stock market.  ETFs are available which essentially provide exposure to entire markets (e.g. U.S. Large Cap Stocks) without purchasing shares in every one of the companies.  Equities are typically higher return, but higher risk that bonds (generalization only - is often specific to the individual securities).  Bonds are fixed income securities where a company will borrow money, pay agreed-upon interest throughout the life of the loan, and then pay back the principal at the end of the term.  Bonds are typically lower risk than stocks, however can have significant interest rate risks.  They would be most easily compared to a GIC that you would obtain from the bank.  Bonds will pay higher interest than bank GIC's as there is slightly higher chances of default.",
+
+    "What is the difference between real and nominal returns?" => "Real return for a security is the expected return ABOVE (i.e. excluding) inflation.  Most references to return you see in the media are nominal values - i.e. including inflation.  Given that the Canadian Central Bank aims for 2% annual inflation, real returns will be (on average) around 2% less than nominal values.",
+
+    "Why are the future values in the return simulation so high?" => "Depending on the values you put in for income/expenses/yearly raises, the values here can get quite large.  Note that this is due to the power of compound interest.  Consider that $30,000/year over 50 years grows to nearly $9M at 6% return - if your income leaves a fair bit behind after paying your expenses, this difference can greatly add up over time.  Be sure to accurately estimate your expenses!",
+
+    "What are confidence intervals and how do they factor into my return simulation?" => "The 90% and 95% confidence intervals are a calculation based on the observed distribution of investable asset values.  In simple terms, 9 times out of 10 the results will be less than the higher lines, and greater than lower lines.  You should be sure to consider all potential outcomes between these values.",
+
+    "How do I chooose between different ETFs in the same asset class?" => "Selecting a specific ETF is a personal decision, which is why Easy Retirement Planning supports a number of different options per asset class.  As we never have control of your money, you will need to buy the ETFs yourself.  The options provided all fit within the general asset class, but will provide slightly different risk exposures and expense ratios.  Feel free to visit an information provider such as Google Finance or Yahoo Finance to get further information on the ETF holdings and cost (expense ratio).  At Easy Retirement Planning we are believers in passive indexing, and suggest that you look for funds with low expense ratios that simply track the index."
+  }
+
+p
+| This page contains answers to some of our most frequently asked questions.  Can't find what you are looking for?
+span<>
+  a href='/contact' Give us a shout
+| and we will be sure to get back to you (and probably add your question here!)
+
+#faq-questions
+  - questions.each_pair do |question, answer|
+    h3.question
+      span= question
+    blockquote.answer
+      p= answer

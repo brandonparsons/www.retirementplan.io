@@ -1,0 +1,46 @@
+---
+layout: static_page
+title: Contact Us
+---
+
+<div class='row'>
+  <div class='col-md-8 col-md-offset-2'>
+
+    <p>Give us a shout however is most convenient! We will get back to you as soon as possible.</p>
+
+    <hr />
+
+    <h4><i class='icon icon-envelope'></i>&nbsp;E-mail</a></h4>
+    <br />
+
+    <form id='contact-form' action='<%= contact_path %>' method="POST">
+      <div class="form-group">
+        <label for="email-entry">Your email</label>
+        <input type="email" class="form-control" name="email" id="email-entry" placeholder='you@example.com' required>
+      </div>
+
+      <div class="form-group">
+        <label for="subject-entry">E-mail Subject</label>
+        <input type="text" class="form-control" name="subject" value="" id="subject-entry" placeholder="A descriptive subject line" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message-entry">Your message</label>
+        <textarea class="form-control" name="message" id="message-entry" required></textarea>
+      </div>
+
+      <input type="submit" name="submit" value="Submit" class='btn btn-success'>
+    </form>
+
+
+    <br />
+    <hr />
+
+    <h4><i class='icon icon-twitter-sign'></i>&nbsp;<a href='https://twitter.com/intent/tweet?screen_name=<%= author_twitter %>'>Twitter</a></h4>
+
+    <hr />
+
+    <h4><i class='icon icon-google-plus-sign'></i>&nbsp;<a href='https://plus.google.com/<%= author_googleplus %>/' target='_blank'>Google Plus</a></h4>
+
+  </div>
+</div>
