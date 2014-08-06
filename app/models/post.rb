@@ -30,18 +30,24 @@ class Post
         `#{git_clone} #{tmp_post_content_location}`
       end
 
+      # Handle posts
+      FileUtils.mkdir_p(blog_content_directory)
       copy_directory("#{tmp_post_content_location}/posts", blog_content_directory)
-      copy_directory("#{tmp_post_content_location}/images", "#{public_dir}/images")
+
+      # Handle images
+      FileUtils.mkdir_p("#{public_dir}/images")
+      copy_directory("#{tmp_post_content_location}/images", "#{public_dir}/images/blog")
     end
+
+    def blog_content_directory
+      Rails.root.join 'blog_content'
+    end
+
 
     private
 
     def all_slugs
       Dir.glob("#{blog_content_directory}/*.md").map { |f| File.basename(f,'.md') }
-    end
-
-    def blog_content_directory
-      Rails.root.join 'blog_content'
     end
 
     def bin_dir
@@ -99,8 +105,12 @@ class Post
   end
 
   def html
-    # Rails.cache.fetch("#{cache_key}/html") { to_html }
-    to_html
+    Jekyll::Converters::Markdown::RedcarpetParser.new({
+      'highlighter' => 'rouge',
+      'redcarpet' => {
+        'extensions' => ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "lax_spacing", "superscript", "with_toc_data"]
+      }
+    }).convert(markdown)
   end
 
   def excerpt
@@ -148,25 +158,15 @@ class Post
   end
 
   def file_path
-    self.class.send(:blog_content_directory).join "#{slug}.md"
+    self.class.blog_content_directory.join "#{slug}.md"
   end
 
   def file_data
-    # Rails.cache.fetch("#{cache_key}/markdown") { File.read(file_path) }
     File.read(file_path)
   end
 
   def markdown
     @markdown
-  end
-
-  def to_html
-    Jekyll::Converters::Markdown::RedcarpetParser.new({
-      'highlighter' => 'rouge',
-      'redcarpet' => {
-        'extensions' => ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "lax_spacing", "superscript", "with_toc_data"]
-      }
-    }).convert(markdown)
   end
 
   def scope

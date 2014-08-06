@@ -1,9 +1,8 @@
-- cache @post.cache_key do
+- cache ['blog', 'show', @post] do
 
   h1= @post.title
   p= @post.formatted_date
   ul
     - @post.tags.each do |tag|
      li=tag
-
   p== @post.html
