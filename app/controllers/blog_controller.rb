@@ -1,7 +1,8 @@
 class BlogController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts      = Post.all
+    @cache_key  = Post.cache_key_for_posts(@posts)
     fresh_when etag: @posts, public: true
   end
 

@@ -6,3 +6,12 @@
     - @post.tags.each do |tag|
      li=tag
   p== @post.html
+
+  hr
+
+  p
+    | Related Posts
+    ul
+      - @post.related_posts.each do |related_slug|
+        - post = Post.find(related_slug)
+        li= link_to post.title, post.path

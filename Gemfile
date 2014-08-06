@@ -8,14 +8,13 @@ gem 'pg'
 # gem 'redis'
 # gem 'split', require: 'split/dashboard'
 
-# gem 'classifier', require: false
-# gem 'builder' # sitemap.xml
-
+gem 'classifier'
 gem 'figaro'
+gem 'faraday'
+# gem 'builder' # sitemap.xml
 # gem 'airbrake'
 # gem 'newrelic_rpm'
 # gem 'rack-rewrite'
-# gem 'faraday'
 
 gem 'slim'
 # gem 'kaminari'

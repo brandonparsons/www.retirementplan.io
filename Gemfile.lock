@@ -62,6 +62,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     fast-stemmer (1.0.2)
     ffi (1.9.3)
     figaro (0.7.0)
@@ -124,6 +126,7 @@ GEM
     mini_portile (0.6.0)
     minitest (5.4.0)
     multi_json (1.10.1)
+    multipart-post (2.0.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     oj (2.9.9)
@@ -239,9 +242,11 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  classifier
   coffee-rails (~> 4.0.0)
   dalli
   execjs
+  faraday
   figaro
   heroku-deflater
   hirb

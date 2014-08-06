@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'digest'
 
 class Post
 
@@ -37,6 +38,20 @@ class Post
       # Handle images
       FileUtils.mkdir_p("#{public_dir}/images")
       copy_directory("#{tmp_post_content_location}/images", "#{public_dir}/images/blog")
+    end
+
+    def fill_cache
+      # Blog index page
+      Faraday.new(url: "#{ENV['PRODUCTION_URL']}/blog").get
+
+      # Individual posts
+      all.each do |post|
+        Faraday.new(url: ENV['PRODUCTION_URL'] + post.path).get
+      end
+    end
+
+    def cache_key_for_posts(posts)
+      Digest::MD5.hexdigest posts.map{|post| post.cache_key}.join("--")
     end
 
     def blog_content_directory
@@ -118,6 +133,33 @@ class Post
     truncate strip_tags(first_ptag), length: 200, separator: ' '
   end
 
+  def related_posts
+    @related_posts ||= begin
+      # This is an expensive method. Call with care.
+      post_references     = {}
+      my_markdown_content = markdown
+      lsi                 = Classifier::LSI.new
+
+      self.class.all.each do |post|
+        post_markdown_content = post.send :markdown
+        content_hash          = Digest::MD5.hexdigest(post_markdown_content)
+        post_references[content_hash] = post.slug
+        lsi.add_item(post_markdown_content, *post.tags)
+      end
+
+      related = lsi.find_related(my_markdown_content, 3)
+
+      if related.any?
+        related = related.map do |related_post_content|
+          hash = Digest::MD5.hexdigest(related_post_content)
+          post_references[hash]
+        end
+      end
+
+      related
+    end
+  end
+
   def path
     "/blog/#{slug}"
   end
@@ -139,7 +181,7 @@ class Post
   end
 
   def cache_key
-    ActiveSupport::Cache.expand_cache_key ['blog', slug, updated_at.to_i]
+    ActiveSupport::Cache.expand_cache_key ['post', slug, Digest::MD5.hexdigest(markdown)]
   end
 
 
