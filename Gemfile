@@ -4,21 +4,19 @@ ruby '2.1.2'
 gem 'rails', '4.1.4'
 gem 'pg'
 
-# gem 'sucker_punch'
-# gem 'redis'
-# gem 'split', require: 'split/dashboard'
+gem 'sucker_punch'
+gem 'redis'
+gem 'split', require: 'split/dashboard'
 
 gem 'classifier'
 gem 'figaro'
 gem 'faraday'
-# gem 'builder' # sitemap.xml
-# gem 'airbrake'
-# gem 'newrelic_rpm'
-# gem 'rack-rewrite'
+gem 'rack-rewrite'
+gem 'builder' # sitemap.xml
 
 gem 'slim'
-# gem 'kaminari'
-# gem 'bootstrap-kaminari-views'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 ##
 # Rendering blog posts
@@ -29,8 +27,8 @@ gem 'rouge'
 ##
 
 gem 'jquery-rails'
-# gem 'bootstrap-sass'
-# gem 'font-awesome-rails'
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -48,6 +46,9 @@ group :production do
   gem 'heroku-deflater'
   gem 'rack-cache'
   gem 'rails_12factor'
+
+  gem 'rollbar', require: 'rollbar/rails'
+  gem 'newrelic_rpm'
 end
 
 group :development do
