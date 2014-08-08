@@ -31,7 +31,6 @@ class PostsController < ApplicationController
   def webhook_update
     render json: {status: :unauthorized, message: "Invalid authentication token"} and return unless params[:auth_token] == ENV['WEBHOOK_AUTH_TOKEN']
     logger.warn "[WEBHOOK UPDATE]"
-    logger.warn params.inspect
     PostUpdater.new.async.perform()
     render json: {status: :success, message: "Updating posts"}
   end

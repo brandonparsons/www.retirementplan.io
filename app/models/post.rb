@@ -207,11 +207,15 @@ class Post
   end
 
   def cache_key
-    ActiveSupport::Cache.expand_cache_key ['post', slug, Digest::MD5.hexdigest(markdown)]
+    ActiveSupport::Cache.expand_cache_key ['post', slug, md5(markdown), md5(@data.sort.to_json)]
   end
 
 
   private
+
+  def md5(str)
+    Digest::MD5.hexdigest(str)
+  end
 
   def file_path
     self.class.blog_content_directory.join "#{slug}.md"
