@@ -15,11 +15,11 @@ class Post
   class << self
 
     def all
-      all_slugs.map{ |slug| new(slug.downcase) }.sort
+      all_slugs.map{ |slug| new(slug) }.sort
     end
 
     def find(slug)
-      all.detect{ |post| post.slug.downcase == slug.downcase }
+      all.detect{ |post| post.slug == slug }
     end
 
     def with_tag(tag)
