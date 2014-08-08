@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     get "/feed.xml" => 'posts#feed',  as: :posts_feed, defaults: {format: 'xml'}
 
     get "/:id" => 'posts#show'
+
+    post '/update' => 'posts#webhook_update'
   end
 
 end

@@ -1,0 +1,122 @@
+<% title @post.title %>
+
+<% cache(['blog', 'show', @post]) do %>
+
+  <div id="blog-padded">
+    <div class="container">
+      <div class="row">
+        <div class='col-md-12'>
+          <div class='row'>
+
+            <div class='col-md-3'>
+              <div class='post-side-bar'> <!-- Post sidebar content -->
+
+                <div class='widget widget-back-link'>
+                  <a href='<%= posts_path %>'>
+                    <i class='fa fa-angle-left'></i>&nbsp;Return to the blog index
+                  </a>
+                  <br />
+                  <br />
+                </div>
+
+                <% # CTA / sign up block %>
+                <div class='widget widget-signup'>
+                  <h4>Get started with RetirementPlan.io!</h4>
+                  <%= link_to "Sign up now!", ENV['SIGN_UP_PATH'], class: 'btn btn-lg btn-theme btn-theme3' %>
+                </div>
+
+                <% # "Post Tags" %>
+                <div class='widget widget-cats'>
+                  <h4 class='widget-title'>
+                    Post Tags
+                  </h4>
+                  <ul>
+                    <% @post.tags.each do |tag| %>
+                      <li><%= link_to tag.titleize, tags_path(tag) %></li>
+                    <% end %>
+                  </ul>
+                </div>
+
+                <% # "Related content" %>
+                <div class='widget widget-cats'>
+                  <h4 class='widget-title'>
+                    Related Content
+                  </h4>
+                  <ul>
+                    <% @post.related_posts.each do |post_slug| %>
+                      <% related_post = Post.find(post_slug) %>
+                      <li><%= link_to related_post.title, related_post.path %></li>
+                    <% end %>
+                  </ul>
+                </div>
+
+                <% # Author block %>
+                <div class='widget widget-author'>
+                  <div class='author-meta'>
+                    <h5 class='author-name'><%= @post.author || "Brandon Parsons" %></h5>
+                    <p class='author-bio'><%= @post.author_tagline %></p>
+                  </div>
+                </div>
+
+              </div>
+            </div> <!-- col-md-3 -->
+
+            <div class='col-md-9'>
+              <div class='post-single'> <!-- Main Post content -->
+
+                <% # "Filed under"  / "by" %>
+                <div class='pre-post-meta'>
+                  <% primary_tag = @post.tags[0] %>
+                  <% if primary_tag %>
+                    <span>
+                      <i class='fa fa-archive'></i>
+                      &nbsp;
+                      <%= link_to "Filed under #{primary_tag.titleize}", tags_path(primary_tag) %>
+                    </span>
+                  <% end %>
+                  <span>
+                    <i class='fa fa-user'></i>
+                    &nbsp;by <%= @post.author %>
+                  </span>
+                </div>
+
+                <h1 class='has-sub-header'><%= @post.title %></h1>
+
+                <% # Date / reading time %>
+                <div class='post-single-meta'>
+                  <span class='meta-item'>
+                    <i class='fa fa-clock-o'></i>
+                    <%= @post.formatted_date %>
+                  </span>
+                  <span>
+                    <i class='fa fa-bookmark'></i>
+                    <%= reading_time(@post.html) %>
+                  </span>
+                </div>
+
+                <% # Post content %>
+                <div class='post-single-content'>
+                  <%= @post.html.html_safe %>
+                </div>
+
+                <% # Share links %>
+                <div class='row under-post text-center'>
+                  <div class='post-social col-md-12'>
+                    <h4>SHARE THIS POST</h4>
+                    <%= render partial: 'shared/social_links', locals: {url: @post.path, title: @post.title} %>
+                    <br />
+                    <p><a href="https://twitter.com/<%= ENV['AUTHOR_TWITTER'] %>" class="twitter-follow-button" data-show-count="false">Follow @<%= ENV['AUTHOR_TWITTER'] %></a></p>
+                  </div>
+                </div>
+
+              </div>
+            </div> <!-- col-md-9 -->
+
+          </div>
+        </div> <!-- col-md-12 -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+
+  </div> <!-- blog-padded -->
+
+<% end %>

@@ -1,0 +1,37 @@
+<% title "Posts tagged '#{@tag.titleize}'" %>
+
+<div class='row'>
+  <div class='col-md-12'>
+
+    <ul class='list-unstyled'>
+      <% @posts.each do |post| %>
+
+        <% cache(['tag_entries', post]) do %>
+          <li>
+              <h3><%= link_to post.title, post.path %></h3>
+              <i class='fa fa-clock-o'></i>&nbsp;
+              <%= post.formatted_date %>&nbsp;-&nbsp;
+              <i class='fa fa-bookmark-o'></i>
+              &nbsp;Tagged with: <% post.tags.each do |tag| %>
+                | <%= link_to tag.titleize, tags_path(tag) %> |
+              <% end %>
+          </li>
+        <% end %>
+
+      <% end %>
+    </ul>
+
+    <div class='row text-center'>
+      <div class='col-md-9 col-md-offset-3'>
+        <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
+        <% content_for :head do %>
+          <% # Generates rel='next/prev' to avoid duplicate content issues %>
+          <%= rel_next_prev_link_tags @posts %>
+        <% end %>
+      </div>
+    </div>
+
+    <br>
+
+  </div>
+</div>

@@ -83,8 +83,6 @@ Rails.application.configure do
 
   ###########
 
-  config.logger = Logger.new(STDOUT)
-
   ActionMailer::Base.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              "smtp.mandrillapp.com",

@@ -15,11 +15,23 @@ class Post
   class << self
 
     def all
-      all_slugs.map{ |slug| new(slug) }.sort
+      all_slugs.map{ |slug| new(slug.downcase) }.sort
     end
 
     def find(slug)
-      all.detect{ |post| post.slug == slug }
+      all.detect{ |post| post.slug.downcase == slug.downcase }
+    end
+
+    def with_tag(tag)
+      all.select{|post| post.tags.include?(tag)}
+    end
+
+    def feed
+      all.take(10)
+    end
+
+    def last_post_date
+      all.first.date
     end
 
     def run_update
@@ -98,8 +110,7 @@ class Post
 
   def initialize(slug)
     @slug = slug
-    @data = {}
-    parse_file
+    @data = SafeYAML.load(file_data)
   end
 
   def title
@@ -112,6 +123,21 @@ class Post
 
   def tags
     @data['tags'] || []
+  end
+
+  def author
+    @data['author'] || ""
+  end
+
+  def author_tagline
+    case author
+    when "Brandon Parsons"
+      "RetirementPlan.io Founder & CEO"
+    when "Scott Valentine"
+      "RetirementPlan.io Advisor"
+    else
+      "RetirementPlan.io contributor"
+    end
   end
 
   def formatted_date
@@ -187,18 +213,6 @@ class Post
 
   private
 
-  def parse_file
-    @markdown = Tilt::ErubisTemplate.new do
-      fdata = file_data
-      if fdata =~ /\A(---\s*\n.*?\n?)^(---\s*$\n?)/m
-        @data = SafeYAML.load($1)
-        $POSTMATCH
-      else
-        fdata
-      end
-    end.render(scope, post: self)
-  end
-
   def file_path
     self.class.blog_content_directory.join "#{slug}.md"
   end
@@ -208,7 +222,15 @@ class Post
   end
 
   def markdown
-    @markdown
+    Tilt::ErubisTemplate.new do
+      fdata = file_data
+      if fdata =~ /\A(---\s*\n.*?\n?)^(---\s*$\n?)/m
+        _ = SafeYAML.load($1) # Discard YAML frontmatter
+        $POSTMATCH
+      else
+        fdata
+      end
+    end.render(scope, post: self)
   end
 
   def scope

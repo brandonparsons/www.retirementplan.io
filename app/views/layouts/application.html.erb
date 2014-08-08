@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <title>RetirementPlanIo</title>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= render 'shared/meta_shims' %>
+
+    <% title = yield(:title).empty? ? "RetirementPlan.io" : "#{yield(:title)} | RetirementPlan.io" %>
+    <title><%= title.html_safe %></title>
+
+    <% ####### %>
+
+    <% canonical_base   = request.path %>
+    <% canonical        = "#{ENV['PRODUCTION_URL']}#{canonical_base}" %>
+    <% author_twitter   = ENV['AUTHOR_TWITTER'] %>
+    <% facebook_app_id  = ENV['FACEBOOK_APP_ID'] %>
+    <% description      = yield(:description) %>
+
+    <link rel="canonical" href="<%= canonical %>">
+    <meta property="og:title" content="<%= title %>" />
+    <meta property="og:url" content="<%= canonical %>" />
+    <meta property="og:site_name" content="RetirementPlan.io" />
+    <% if description.present? %>
+      <meta property="og:description" content="<%= description %>">
+    <% end %>
+    <meta property="fb:app_id" content="<%= facebook_app_id %>" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@<%= author_twitter %>">
+    <meta name="twitter:creator" content="@<%= author_twitter %>">
+
+    <% ####### %>
     <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'vendor', 'main', media: 'all' %>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+
+    <%= yield(:head) %>
+
+    <%= javascript_include_tag 'top' %>
+    <%= render 'shared/analytics' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body data-spy="scroll" data-offset="0" data-target="#navigation">
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/chromeframe' %>
+    <%= render 'shared/noscript' %>
+
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render 'shared/footer' %>
+
+    <div id="fb-root"></div>
+    <%= javascript_include_tag 'vendor', 'bottom' %>
   </body>
+
 </html>

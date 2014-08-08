@@ -1,0 +1,51 @@
+// RESPONSIVE FIXES
+
+/* For general tablet layouts */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
+
+}
+
+// Tiny Devices only
+@media (max-width: 320px) {
+  .navbar-brand {
+    line-height: 10px;
+    b {font-size: 60%;}
+    img {
+      width: 230px;
+      padding-top: 3px;
+    }
+  }
+  #navigation {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  #headerwrap h1 {
+    font-size:2.0em;
+  }
+
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .navbar-brand b {font-size: 75%;}
+}
+
+// Anything below first breakpoint
+@media (max-width: 991px) {
+  #copywrap { text-align: center; }
+  #footer-links {text-align: center; }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #newsletter-text {
+    text-align: left !important; /*Only center on small devices*/
+  }
+  #footer-links { text-align: right; }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}

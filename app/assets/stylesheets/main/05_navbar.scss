@@ -1,0 +1,19 @@
+// Shrink navbar
+
+body {
+  padding-top: 70px;
+}
+.navbar-default {
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar > .container .navbar-brand {
+  line-height: inherit;
+  height: inherit;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+}

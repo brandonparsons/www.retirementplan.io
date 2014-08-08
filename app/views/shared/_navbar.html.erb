@@ -1,0 +1,26 @@
+<!-- Fixed navbar -->
+<div id="navigation" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/" alt="RetirementPlan.io Homepage"><%= image_tag "logo.png" %></a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class='visible-lg visible-md'><a href="/blog"><i class='fa fa-book'></i>&nbsp;Blog</a></li>
+        <li><a href="#contact" class="smoothScroll"><i class='fa fa-envelope'></i>&nbsp;Contact</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown"><a href="<%= ENV['SIGN_IN_PATH'] %>"><i class="fa fa-sign-in"></i>&nbsp;Sign In</a></li>
+        <div class="navbar-form pull-left">
+          <a href="<%= ENV['SIGN_UP_PATH'] %>" type="button" class="btn btn-sm btn-theme">Register for Free</a>
+        </div>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>

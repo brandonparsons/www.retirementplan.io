@@ -1,0 +1,72 @@
+<% title "Blog" %>
+
+<div id="blog-padded">
+  <div class="container">
+
+    <div class="row">
+      <div class='col-md-12'>
+
+        <% @posts.each do |post| %>
+
+          <% cache(['blog', 'index', post]) do %>
+
+            <div class='row post-loop'>
+              <div class='col-md-2 col-md-offset-1'>
+                <div class='post-loop-author-info'>
+                  <div class='author-meta'>
+                    <h4 class='author-name'>by <%= post.author %></h4>
+                    <i class='fa fa-clock-o'>&nbsp;</i>
+                    <%= post.formatted_date %>
+                  </div>
+                </div>
+              </div>
+              <div class='col-md-9'>
+                <div class='post-loop-content'>
+                  <h2 class='has-sub-header'>
+                    <%= link_to post.title, post.path %>
+                  </h2>
+                  <div class='post-loop-meta'>
+                    <% primary_tag = post.tags[0] %>
+                    <% if primary_tag %>
+                      <span class='hidden-mobile-ib'>
+                        <i class='fa fa-archive'></i>
+                        <%= link_to "Filed under #{primary_tag.titleize}", tags_path(primary_tag)%>
+                      </span>
+                    <% end %>
+                    <span>
+                      <i class='fa fa-bookmark'></i>
+                      <%= reading_time(post.html) %>
+                    </span>
+                  </div>
+
+                  <div class='post-summary'>
+                    <p><%= post.excerpt %></p>
+                  </div>
+
+                  <p class='text-center'>
+                    <a href="<%= post.path %>" class='btn btn-default' title="Read More"><i class='fa fa-expand'></i>&nbsp;&nbsp;Read More</a>
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+
+        <% end %>
+
+        <div class='row text-center'>
+          <div class='col-md-9 col-md-offset-3'>
+            <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
+            <% content_for :head do %>
+              <% # Generates rel='next/prev' to avoid duplicate content issues %>
+              <%= rel_next_prev_link_tags @posts %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

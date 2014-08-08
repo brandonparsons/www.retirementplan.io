@@ -1,0 +1,147 @@
+<% title "Home" %>
+<% description "RetirementPlan.io - simplified retirement modeling." %>
+
+<div id="headerwrap">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1>Welcome to <b>RetirementPlan.io</b></h1>
+        <h3>Easy, do-it-yourself retirement planning for everyone</h3>
+        <br>
+      </div>
+
+      <div class="col-md-6">
+        <%= image_tag 'home/family.jpg', class: "img-responsive", alt: "Know that you are on the right track with RetirementPlan.io" %>
+        <br />
+        <br />
+      </div>
+
+      <div class='col-md-6'>
+
+        <p style='text-align: center;'>
+          Discover the retirement planning tool you should have had all along.
+        </p>
+
+        <div id='simulation-counter'>
+          <% simulation_count = $redis.get $SIMULATION_COUNT_KEY %>
+          <p><span class="badge"><%= number_with_delimiter(simulation_count, :delimiter => ',') %></span> lifetimes simulated, and <span style="text-decoration:underline;">counting</span>.</p>
+        </div>
+
+        <p id='hero-register-button'><a href="<%= ENV['SIGN_UP_PATH'] %>" type="submit" class="btn btn-lg btn-theme">Register for Free</a></p>
+
+      </div>
+
+    </div>
+  </div> <!--/ .container -->
+</div><!--/ #headerwrap -->
+
+
+<!-- INTRO WRAP -->
+<div id="intro">
+  <div class="container">
+    <div class="row text-center">
+      <h2><span class="heavy">Easy</span> to use, <span class="heavy">effective</span>, backed by <span class="heavy">Nobel Prize-winning mathematics</span>.</h2>
+      <hr>
+      <br>
+      <br>
+      <div class="col-md-3">
+        <i class='fa fa-tasks fa-3x'></i>
+        <h3>Asset Allocation</h3>
+        <p>Select from a range of appropriate portfolios tailored to your risk tolerance. Pick what fits you best.</p>
+      </div>
+      <div class="col-md-3">
+        <i class='fa fa-bar-chart-o fa-3x'></i>
+        <h3>Retirement Planning</h3>
+        <p>Perform Monte Carlo simulations to determine if your money should last through retirement. Geared to your individual characteristics and goals.</p>
+      </div>
+      <div class="col-md-3">
+        <i class='fa fa-envelope fa-3x'></i>
+        <h3>Instant Notification</h3>
+        <p>We will constantly track your portfolio and let you know when it drifts out of balance. Simple, easy-to-follow instructions are provided on how to rebalance.</p>
+      </div>
+      <div class="col-md-3">
+        <i class='fa fa-lock fa-3x'></i>
+        <h3>Secure</h3>
+        <p>We never need to hold your money - it is always under your control. All of your personal data is secured by industry-standard encryption.</p>
+      </div>
+    </div>
+    <br>
+    </div> <!--/ .container -->
+</div><!--/ #introwrap -->
+
+
+<!-- FEATURES WRAP -->
+<div id="featureswrap">
+  <div class="container">
+
+    <div class="row">
+      <h2 class="text-center">The RetirementPlan.io Process</h2>
+      <hr>
+      <br>
+      <br>
+      <div class="col-md-6">
+        <ul class='list-checkmarked text-bigger text-left'>
+          <li>
+            <strong>Quick Questionnaire:</strong>
+            Answer a few simple questions to give us a better idea of your risk tolerance and financial goals.
+          </li>
+          <li>
+            <strong>Get Recommendations:</strong>
+            Based on the results of your questionnaire, we generate a customized set of portfolios for you and provide guidance on selection. Whether you are risk averse or open to volatility, you are in the driver's seat.
+          </li>
+          <li>
+            <strong>Simulate Retirement:</strong>
+            Run hundreds of simulated trials of your lifetime using your selected portfolio. We don't just assume your portfolio will grow at 8% per year - we use statistical techniques to provide a range of outcomes.
+          </li>
+          <li>
+            <strong>Purchase ETF's:</strong>
+            RetirementPlan.io <em>never</em> has access to your money.  Purchase ETFs through your favourite discount brokerage or at your bank, and then update our records with your holdings.
+          </li>
+          <li>
+            <strong>We track your portfolio.</strong>
+            RetirementPlan.io will track your portfolio and let you know when it is time to rebalance (and <em>exactly</em> how to do it!)
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <%= image_tag 'home/simulation-results.png', class: "img-responsive", alt: "Monte Carlo retirement simulation results" %>
+      </div>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+  </div><!--/ .container -->
+</div><!--/ #features -->
+
+
+<div id="divider01">
+  <div class="container">
+    <div class="row text-center">
+      <div id="carousel-example-generic" class="carousel slide">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+              <h3>"I'm comfortable purchasing ETF's on my own - but didn't know how to determine the effects of assets allocation on my retirement. This should help cut down on the fees I pay every year."</h3>
+              <h4>R.Walker, <em>Calgary, AB</em></h4>
+            </div>
+            <div class="item">
+              <h3>"The site was very easy to follow (even without being an expert), and well laid out. It helped me to determine how much I could spend in retirement without running out of money. Thanks!"</h3>
+              <h4>H.Walker, <em>Calgary, AB</em></h4>
+            </div>
+        </div><!-- /carousel-inner -->
+        <br>
+        <br>
+        <br>
+        <!-- Indicators - Uncomment for indicators to show -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        </ol>
+      </div><!-- /carousel-example -->
+    </div>
+  </div><!--/ .container -->
+</div><!--/ #divider01 -->
