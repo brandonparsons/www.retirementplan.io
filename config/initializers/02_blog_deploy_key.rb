@@ -6,6 +6,6 @@ File.write(key_loc, ENV['BLOG_GIT_SSH_PRIVATE_KEY'])
 File.chmod(0600, key_loc)
 
 if Rails.env.production?
-  FileUtils.mkdir_p "~/.ssh"
-  File.write("~/.ssh/config", "Host bitbucket.org\n\tStrictHostKeyChecking no\n")
+  `mkdir -p $HOME/.ssh`
+  `echo "Host bitbucket.org\n\tStrictHostKeyChecking no\n" > $HOME/.ssh/config`
 end
