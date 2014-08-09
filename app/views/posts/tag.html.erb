@@ -1,37 +1,74 @@
 <% title "Posts tagged '#{@tag.titleize}'" %>
+<% description "RetirementPlan.io blog posts tagged #{@tag.titleize}" %>
 
-<div class='row'>
-  <div class='col-md-12'>
+<div class='row large-top-padding'>
 
-    <ul class='list-unstyled'>
-      <% @posts.each do |post| %>
+  <div class='col-md-3'>
+    <%= render partial: 'posts/signup_widget' %>
+    <%= render partial: 'posts/newsletter_widget' %>
 
-        <% cache(['tag_entries', post]) do %>
-          <li>
-              <h3><%= link_to post.title, post.path %></h3>
-              <i class='fa fa-clock-o'></i>&nbsp;
-              <%= post.formatted_date %>&nbsp;-&nbsp;
-              <i class='fa fa-bookmark-o'></i>
-              &nbsp;Tagged with: <% post.tags.each do |tag| %>
-                | <%= link_to tag.titleize, tags_path(tag) %> |
-              <% end %>
-          </li>
+    <div class='widget'>
+      <h4 class='widget-title'><i class='fa fa-tags'>&nbsp;</i>Tags</h4>
+      <ul class='widget-list'>
+        <% Post.all_tags.each do |tag| %>
+          <li><%= link_to tag.titleize, tags_path(tag) %></li>
         <% end %>
+      </ul>
+    </div>
+  </div>
 
-      <% end %>
+  <div class='col-md-9'>
+
+    <h1 class='text-center'>Posts tagged '<%= @tag.titleize %>'</h1>
+    <hr>
+
+    <ul class='list-unstyled posts-for-tag'>
+      <% @posts.each do |post| %>
+        <% cache(['tag_entries', post]) do %>
+
+          <li>
+            <h3><%= link_to post.title, post.path %></h3>
+
+            <div class='post-meta'>
+              <ul class='list-inline meta-entries text-muted'>
+
+                <li class='meta-item'>
+                  <i class='fa fa-clock-o'></i>&nbsp;
+                  <%= post.formatted_date %>
+                </li>
+
+                <li class='meta-item'>
+                  <i class='fa fa-clock-o'></i>&nbsp;
+                  <%= reading_time(post.html) %>
+                </li>
+
+                <li class='meta-item'>
+                  <i class='fa fa-user'></i>&nbsp;
+                  &nbsp;by <%= post.author %>
+                </li>
+
+              </ul>
+            </div>
+
+            <i class='fa fa-tags'></i>&nbsp;Tags:
+            <ul>
+              <% post.tags.each do |tag| %>
+                <li><%= link_to tag.titleize, tags_path(tag) %></li>
+              <% end %>
+            </ul>
+          </li>
+
+        <% end # cache %>
+      <% end # posts.each %>
     </ul>
 
-    <div class='row text-center'>
-      <div class='col-md-9 col-md-offset-3'>
-        <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
-        <% content_for :head do %>
-          <% # Generates rel='next/prev' to avoid duplicate content issues %>
-          <%= rel_next_prev_link_tags @posts %>
-        <% end %>
-      </div>
+    <div class='text-center'>
+      <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
+      <% content_for :head do %>
+        <% # Generates rel='next/prev' to avoid duplicate content issues %>
+        <%= rel_next_prev_link_tags @posts %>
+      <% end %>
     </div>
-
-    <br>
 
   </div>
 </div>

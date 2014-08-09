@@ -22,6 +22,10 @@ class Post
       all.detect{ |post| post.slug == slug }
     end
 
+    def all_tags
+      all.map(&:tags).flatten.uniq.sort
+    end
+
     def with_tag(tag)
       all.select{|post| post.tags.include?(tag)}
     end
@@ -126,18 +130,7 @@ class Post
   end
 
   def author
-    @data['author'] || ""
-  end
-
-  def author_tagline
-    case author
-    when "Brandon Parsons"
-      "RetirementPlan.io Founder & CEO"
-    when "Scott Valentine"
-      "RetirementPlan.io Advisor"
-    else
-      "RetirementPlan.io contributor"
-    end
+    @data['author'] || "RetirementPlan.io Contributor"
   end
 
   def formatted_date
@@ -156,7 +149,11 @@ class Post
 
   def excerpt
     first_ptag = Nokogiri::HTML(html).css('p:first').text.squish
-    truncate strip_tags(first_ptag), length: 200, separator: ' '
+    post_excerpt = truncate(strip_tags(first_ptag), length: 200, separator: ' ')
+    if (post_excerpt.length == 0) && @data['summary'].present?
+      post_excerpt = @data['summary']
+    end
+    post_excerpt
   end
 
   def related_posts

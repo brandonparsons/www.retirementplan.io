@@ -30,12 +30,11 @@
     <% ####### %>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag 'vendor', 'main', media: 'all' %>
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag 'vendor', 'application', media: 'all' %>
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
 
     <%= yield(:head) %>
 
-    <%= javascript_include_tag 'top' %>
     <%= render 'shared/analytics' %>
   </head>
 
@@ -44,16 +43,19 @@
     <%= render 'shared/chromeframe' %>
     <%= render 'shared/noscript' %>
 
-    <div class='row'>
-      <div class='col-md-12'>
+    <% if controller.action_name == 'home' %>
+      <% # Home page needs full width for the slider background - need to do container there %>
+      <%= yield %>
+    <% else %>
+      <div class='container-fluid'>
         <%= yield %>
       </div>
-    </div>
+    <% end %>
 
     <%= render 'shared/footer' %>
 
     <div id="fb-root"></div>
-    <%= javascript_include_tag 'vendor', 'bottom' %>
+    <%= javascript_include_tag 'vendor', 'application' %>
   </body>
 
 </html>

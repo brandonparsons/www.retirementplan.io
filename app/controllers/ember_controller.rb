@@ -1,7 +1,9 @@
 class EmberController < ApplicationController
+
   def index
     render text: index_html
   end
+
 
   private
 
@@ -20,4 +22,5 @@ class EmberController < ApplicationController
       params[:version]
     end
   end
+
 end

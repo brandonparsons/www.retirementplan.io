@@ -9,4 +9,10 @@ module PostHelper
     "/images/blog/#{image_name}"
   end
 
+  def image_attribution(image_src)
+    content_tag :p, class: 'image-attribution' do
+      link_to "Photo credit", image_src, target: "_blank", rel: 'nofollow'
+    end
+  end
+
 end

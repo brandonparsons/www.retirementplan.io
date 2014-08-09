@@ -1,4 +1,5 @@
 class MiscController < ApplicationController
+
   def error
     raise "Test Error"
   end

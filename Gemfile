@@ -29,6 +29,7 @@ gem 'rouge'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+gem 'fastclick-rails'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -72,4 +73,7 @@ group :development do
   gem "better_errors"
 
   gem 'quiet_assets'
+
+  gem 'guard'
+  gem 'guard-livereload', require: false
 end

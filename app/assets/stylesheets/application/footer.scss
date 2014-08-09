@@ -1,0 +1,70 @@
+#call-to-action-banner {
+  background-color: $light-green;
+  height: 150px;
+  padding-top: 55px;
+
+  h3 {
+    color: #fff;
+    padding-right: 40px;
+    display: inline;
+    vertical-align: middle;
+  }
+  button {
+    display: inline;
+    vertical-align: middle;
+  }
+}
+
+
+#main-footer-section {
+  background-color: #333;
+  color: #777;
+  padding-bottom: 60px;
+
+  #social-links {
+    a {
+      color: white;
+      margin-left: 5px;
+      margin-right: 5px;
+
+      &:hover {
+        color: $dark-blue;
+      }
+    }
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+  }
+  p {
+    color: #fff;
+    font-size: 14px;
+  }
+  input:focus {
+    outline: 0;
+  }
+  a {
+    color: white;
+  }
+}
+
+// Also used in blog sidebar
+.newsletter-email-box {
+  max-width: 180px;
+  text-align: center;
+  display: inline-block;
+}
+
+#copyright-links {
+  background: #222;
+  padding-top: 20px;
+  font-size: 14px;
+  color: white;
+  a {
+    color: white;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

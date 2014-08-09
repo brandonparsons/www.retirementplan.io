@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  layout :resolve_layout
   protect_from_forgery except: [:webhook_update]
 
   def index
@@ -37,10 +36,6 @@ class PostsController < ApplicationController
 
 
   private
-
-  def resolve_layout
-    action_name == "tag" ? "static" : "application"
-  end
 
   def paginated(array)
     Kaminari.paginate_array(array).page(params[:page]).per(posts_per_page)

@@ -83,7 +83,7 @@ $(document).ready(function() {
     ga('send', 'social', 'googleplus', 'engagement', 'gplus-profile-visit');
   });
 
-  $("#email-link").click(function() {
+  $(".email-link").click(function() {
     ga('send', 'social', 'email', 'engagement', 'email-link-click');
   });
 

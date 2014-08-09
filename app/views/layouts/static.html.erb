@@ -1,18 +1,16 @@
 <%= inside_layout "application" do %>
 
-  <div class="container">
-    <div class="row">
+  <div class="row">
 
-      <% if title = yield(:title) %>
-        <h1 class="text-center has-sub-header"><%= title %></h1>
-        <hr>
-      <% end %>
+    <% if title = yield(:title) %>
+      <h1 class="text-center"><%= title %></h1>
+      <hr>
+    <% end %>
 
-      <div class='col-lg-12 static-page-content'>
-        <%= yield %>
-      </div>
-
+    <div class='col-lg-12 static-page-content'>
+      <%= yield %>
     </div>
+
   </div>
 
 <% end %>

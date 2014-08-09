@@ -38,5 +38,5 @@ Rails.application.configure do
   #############
 
   config.action_mailer.delivery_method = :letter_opener
-  config.cache_store = :memory_store # SCSS compilation cache gets angry if you dont have a cache present
+  config.cache_store = :null_store
 end

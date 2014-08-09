@@ -1,72 +1,81 @@
 <% title "Blog" %>
+<% description "RetirementPlan.io blog - Recent posts" %>
 
-<div id="blog-padded">
-  <div class="container">
+<div class='row large-top-padding'>
 
-    <div class="row">
-      <div class='col-md-12'>
+  <div class='col-md-3'>
+    <%= render partial: 'posts/signup_widget' %>
+    <%= render partial: 'posts/newsletter_widget' %>
 
-        <% @posts.each do |post| %>
-
-          <% cache(['blog', 'index', post]) do %>
-
-            <div class='row post-loop'>
-              <div class='col-md-2 col-md-offset-1'>
-                <div class='post-loop-author-info'>
-                  <div class='author-meta'>
-                    <h4 class='author-name'>by <%= post.author %></h4>
-                    <i class='fa fa-clock-o'>&nbsp;</i>
-                    <%= post.formatted_date %>
-                  </div>
-                </div>
-              </div>
-              <div class='col-md-9'>
-                <div class='post-loop-content'>
-                  <h2 class='has-sub-header'>
-                    <%= link_to post.title, post.path %>
-                  </h2>
-                  <div class='post-loop-meta'>
-                    <% primary_tag = post.tags[0] %>
-                    <% if primary_tag %>
-                      <span class='hidden-mobile-ib'>
-                        <i class='fa fa-archive'></i>
-                        <%= link_to "Filed under #{primary_tag.titleize}", tags_path(primary_tag)%>
-                      </span>
-                    <% end %>
-                    <span>
-                      <i class='fa fa-bookmark'></i>
-                      <%= reading_time(post.html) %>
-                    </span>
-                  </div>
-
-                  <div class='post-summary'>
-                    <p><%= post.excerpt %></p>
-                  </div>
-
-                  <p class='text-center'>
-                    <a href="<%= post.path %>" class='btn btn-default' title="Read More"><i class='fa fa-expand'></i>&nbsp;&nbsp;Read More</a>
-                  </p>
-
-                </div>
-              </div>
-            </div>
-
-          <% end %>
-
+    <div class='widget'>
+      <h4 class='widget-title'><i class='fa fa-tags'>&nbsp;</i>Tags</h4>
+      <ul class='widget-list'>
+        <% Post.all_tags.each do |tag| %>
+          <li><%= link_to tag.titleize, tags_path(tag) %></li>
         <% end %>
+      </ul>
+    </div>
+  </div>
 
-        <div class='row text-center'>
-          <div class='col-md-9 col-md-offset-3'>
-            <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
-            <% content_for :head do %>
-              <% # Generates rel='next/prev' to avoid duplicate content issues %>
-              <%= rel_next_prev_link_tags @posts %>
-            <% end %>
+  <div class='col-md-9'>
+
+    <% @posts.each do |post| %>
+
+      <% cache(['blog', 'index', post]) do %>
+
+        <div class='row post-loop'>
+
+          <div class='col-md-2'>
+
+            <div class='post-info text-muted'>
+              <h4 class='author-name'>by <%= post.author %></h4>
+
+              <p class='post-meta'>
+                <i class='fa fa-calendar-o'>&nbsp;</i>
+                <%= post.formatted_date %>
+              </p>
+
+              <% primary_tag = post.tags[0] %>
+              <% if primary_tag %>
+                <p class='post-meta'>
+                  <i class='fa fa-archive'></i>
+                  Filed under <%= link_to "#{primary_tag.titleize}", tags_path(primary_tag)%>
+                </p>
+              <% end %>
+
+              <p class='post-meta'>
+                <i class='fa fa-clock-o'></i>
+                <%= reading_time(post.html) %>
+              </p>
+
+            </div> <!-- post-info -->
+
+          </div> <!-- col-md-3 -->
+
+          <div class='col-md-10 post-content'>
+            <h2><%= link_to post.title, post.path %></h2>
+            <p class='post-excerpt'><%= post.excerpt %></p>
+
+            <p class='read-more'>
+              <a href="<%= post.path %>" class='btn btn-default' title="Read More"><i class='fa fa-expand'></i>&nbsp;&nbsp;Read More</a>
+            </p>
+
           </div>
-        </div>
+        </div> <!-- row -->
 
-      </div>
+      <% end #cache %>
+
+    <% end # @posts.each %>
+
+    <hr>
+
+    <div class='text-center'>
+      <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
+      <% content_for :head do %>
+        <% # Generates rel='next/prev' to avoid duplicate content issues %>
+        <%= rel_next_prev_link_tags @posts %>
+      <% end %>
     </div>
 
-  </div>
+  </div> <!-- col-md-9 -->
 </div>

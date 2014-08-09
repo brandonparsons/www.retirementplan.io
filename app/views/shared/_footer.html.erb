@@ -1,80 +1,67 @@
-<div id="divider02">
-  <div class="container text-center">
-    <h3><strong>Understand</strong> your finances.</h3>
-    <a href="<%= ENV['SIGN_UP_PATH'] %>" type="button" class="btn btn-lg btn-theme2"><strong>Register for Free</strong></a>
-  </div>
-</div>
+<div class='container-fluid'>
 
-<section id="contact" name="contact"></section>
-<div id="footerwrap">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 text-center">
-        <h3>Contact Us</h3>
-        <br>
-        <p>
-          <i class="fa fa-map-marker"></i> Calgary AB, Canada <br/>
-          <% if ENV['AUTHOR_PHONE'].present? %>
-            <i class="fa fa-phone"></i>&nbsp;<%= ENV['AUTHOR_PHONE'] %><br/>
-          <% end %>
-          <i class="fa fa-envelope-o"></i> <a href="mailto:<%= ENV['AUTHOR_EMAIL'] %>?subject=<%= ENV['AUTHOR_EMAIL_CONTACT_SUBJECT'] %>"><%= ENV['AUTHOR_EMAIL'] %></a>
-        </p>
-      </div>
-
-      <div class="col-md-4 text-center">
-        <h3>We Are Social</h3>
-        <br>
-        <p id='social-links'>
-          <% if ENV['AUTHOR_FACEBOOK'].present? %>
-            <a id='facebook-profile-link' href="http://www.facebook.com/<%= ENV['AUTHOR_FACEBOOK'] %>" target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
-          <% end %>
-          <% if ENV['AUTHOR_TWITTER'].present? %>
-            <a id='twitter-profile-link' href="https://twitter.com/intent/user?screen_name=<%= ENV['AUTHOR_TWITTER'] %>" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
-          <% end %>
-          <% if ENV['COMPANY_LINKEDIN'].present? %>
-            <a id='linkedin-profile-link' href="https://www.linkedin.com/company/<%= ENV['COMPANY_LINKEDIN'] %>" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
-          <% end %>
-          <% if ENV['AUTHOR_GOOGLEPLUS'].present? %>
-            <a id='googleplus-profile-link' href="https://plus.google.com/<%= ENV['AUTHOR_GOOGLEPLUS'] %>/" target='_blank'><i class="fa fa-google-plus fa-lg"></i></a>
-          <% end %>
-          <a id='rss-link' href="<%= posts_feed_path %>" target='_blank'><i class="fa fa-rss fa-lg"></i></a>
-          <% if ENV['AUTHOR_EMAIL'].present? %>
-            <a id='email-link' href="mailto:<%= ENV['AUTHOR_EMAIL'] %>?subject=<%= ENV['AUTHOR_EMAIL_CONTACT_SUBJECT'] %>"><i class="fa fa-envelope fa-lg"></i></a>
-          <% end %>
-        </p>
-      </div>
-
-      <div class="col-md-4 text-center">
-        <h3>Newsletter</h3>
-        <br />
-        <p id='newsletter-text'>Subscribe to our newsletter and be the first to know our latest updates.</p>
-        <form class="form-inline" action="http://retirementplan.us3.list-manage.com/subscribe/post?u=3e8d953c17c42d187cc0599b0&amp;id=0c5f480b36" method="post">
-          <input id='mce-EMAIL' name='EMAIL' type="email" class="form-control" placeholder="you@example.com" required>
-          <div style="position: absolute; left: -5000px;"><input type="text" name="b_3e8d953c17c42d187cc0599b0_0c5f480b36" value=""></div>
-          <button class="btn btn-theme" type="submit">Subscribe</button>
-        </form>
-      </div>
+  <div id="call-to-action-banner" class='row text-center'>
+    <div class="col-md-12">
+      <h3><strong>Understand</strong> your finances.</h3>
+      <a href="<%= ENV['SIGN_UP_PATH'] %>" type="button" class="btn btn-lg btn-theme2"><strong>Register for Free</strong></a>
     </div>
-  </div><!--/ .container -->
-</div><!--/ #footerwrap -->
+  </div>
 
-<!-- Copyright Wrap -->
-<div id="copywrap">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-7">
-        <p class='copyright-test'>Copyright &copy;2012-2014 RetirementPlan.io. All Rights Reserved.</p>
-      </div>
-      <div class="col-md-5" id='footer-links'>
-        <p>
-          <%= link_to "Blog", posts_path %> |
-          <%= link_to "About", about_path %> |
-          <%= link_to "Terms", terms_path %> |
-          <%= link_to "Privacy", privacy_path %> |
-          <%= link_to "Disclosures", disclosures_path %> |
-          <%= link_to "Sitemap", sitemap_path %>
-        </p>
-      </div>
-    </div><!-- /row -->
-  </div><!-- /container -->
-</div><!-- /copywrap (copyright) -->
+  <div id="main-footer-section" class='row text-center large-top-padding'>
+    <div class="col-md-4" id='contact-scroll'>
+      <h3>Contact Us</h3>
+      <p>
+        <i class="fa fa-map-marker"></i> Calgary AB, Canada <br/>
+        <% if ENV['AUTHOR_PHONE'].present? %>
+          <i class="fa fa-phone"></i>&nbsp;<%= ENV['AUTHOR_PHONE'] %><br/>
+        <% end %>
+        <i class="fa fa-envelope-o"></i> <a class='email-link underlined' href="mailto:<%= ENV['AUTHOR_EMAIL'] %>?subject=<%= ENV['AUTHOR_EMAIL_CONTACT_SUBJECT'] %>"><%= ENV['AUTHOR_EMAIL'] %></a>
+      </p>
+    </div>
+
+    <div class="col-md-4">
+      <h3>We Are Social</h3>
+      <p id='social-links'>
+        <% if ENV['AUTHOR_FACEBOOK'].present? %>
+          <a id='facebook-profile-link' href="http://www.facebook.com/<%= ENV['AUTHOR_FACEBOOK'] %>" target="_blank"><i class="fa fa-facebook fa-lg"></i></a>
+        <% end %>
+        <% if ENV['AUTHOR_TWITTER'].present? %>
+          <a id='twitter-profile-link' href="https://twitter.com/intent/user?screen_name=<%= ENV['AUTHOR_TWITTER'] %>" target="_blank"><i class="fa fa-twitter fa-lg"></i></a>
+        <% end %>
+        <% if ENV['COMPANY_LINKEDIN'].present? %>
+          <a id='linkedin-profile-link' href="https://www.linkedin.com/company/<%= ENV['COMPANY_LINKEDIN'] %>" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a>
+        <% end %>
+        <% if ENV['AUTHOR_GOOGLEPLUS'].present? %>
+          <a id='googleplus-profile-link' href="https://plus.google.com/<%= ENV['AUTHOR_GOOGLEPLUS'] %>/" target='_blank'><i class="fa fa-google-plus fa-lg"></i></a>
+        <% end %>
+        <a id='rss-link' href="<%= posts_feed_path %>" target='_blank'><i class="fa fa-rss fa-lg"></i></a>
+        <% if ENV['AUTHOR_EMAIL'].present? %>
+          <a class='email-link' href="mailto:<%= ENV['AUTHOR_EMAIL'] %>?subject=<%= ENV['AUTHOR_EMAIL_CONTACT_SUBJECT'] %>"><i class="fa fa-envelope fa-lg"></i></a>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="col-md-4">
+      <h3>Newsletter</h3>
+      <p id='newsletter-text'>Subscribe to our newsletter and be the first to know our latest updates.</p>
+      <%= render partial: 'shared/newsletter_form' %>
+    </div>
+  </div><!--/ #main-footer-section -->
+
+  <div id="copyright-links" class='row'>
+    <div class="col-md-7">
+      <p class='copyright-test'>Copyright &copy;2012-2014 <a href="<%= root_path %>" alt="RetirementPlan.io Copyright">RetirementPlan.io</a>. All Rights Reserved.</p>
+    </div>
+    <div class="col-md-5" id='footer-links'>
+      <p>
+        <%= link_to "Blog", posts_path %> |
+        <%= link_to "About", about_path %> |
+        <%= link_to "Terms", terms_path %> |
+        <%= link_to "Privacy", privacy_path %> |
+        <%= link_to "Disclosures", disclosures_path %> |
+        <%= link_to "Sitemap", sitemap_path %>
+      </p>
+    </div>
+  </div>
+
+</div> <!-- container-fluid -->

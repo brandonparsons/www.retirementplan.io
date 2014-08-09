@@ -1,0 +1,78 @@
+.navbar-default {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: #fff;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-default .navbar-toggle {
+  border: 0;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle > .icon-bar {
+  background-color: #06979e;
+}
+
+.navbar-default .navbar-brand {
+  color: #06979e;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #bdc3c7;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #06979e;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #bdc3c7;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background-color: transparent;
+  color: #bdc3c7;
+}
+
+.navbar-default .navbar-right a[type="button"] {
+  padding: 6px 20px 6px 20px;
+  color: #fff;
+}
+
+.navbar-default .navbar-right a[type="button"]:hover,
+.navbar-default .navbar-right a[type="button"]:focus {
+  background-color: transparent;
+  color: #06979e;
+}
+
+
+.navbar > .container .navbar-brand {
+  line-height: inherit;
+  height: inherit;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  color: $dark-blue;
+}
+
+
+.navbar-default {
+  .navbar-nav > li > a, .navbar-nav > li.active > a {
+    color: $dark-blue;
+  }
+}

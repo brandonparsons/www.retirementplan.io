@@ -11,15 +11,11 @@ class PagesController < ApplicationController
 
   def terms;end
 
+
   private
 
   def resolve_layout
-    case action_name
-    when "home"
-      "application"
-    else
-      "static"
-    end
+    action_name == 'home' ? 'application' : 'static'
   end
 
 end
