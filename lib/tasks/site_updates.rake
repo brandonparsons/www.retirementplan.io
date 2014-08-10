@@ -11,6 +11,11 @@ task get_simulation_count: :environment do
   puts "Set simulation count to #{number_of_simulations}."
 end
 
+desc "Updates posts from git repository"
+task update_posts: :environment do
+  Post.run_update
+end
+
 desc "Pings google/bing with sitemap update"
 task :ping_google  do
   puts "Pinging search engines..."
