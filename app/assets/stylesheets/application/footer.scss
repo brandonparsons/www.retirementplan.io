@@ -61,9 +61,9 @@
   background: #222;
   padding-top: 20px;
   font-size: 14px;
-  color: white;
+  color: #636363;
   a {
-    color: white;
+    color: lighten(#636363, 20%);
     &:hover {
       text-decoration: underline;
     }
