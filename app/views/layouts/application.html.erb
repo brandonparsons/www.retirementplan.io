@@ -3,12 +3,12 @@
 
   <head>
     <%= render 'shared/meta_shims' %>
+    <%= render 'shared/rollbar_javascript_tracking' if Rails.env.production? %>
 
     <% title = yield(:title).empty? ? "RetirementPlan.io" : "#{yield(:title)} | RetirementPlan.io" %>
     <title><%= title.html_safe %></title>
 
-    <% ####### %>
-
+    <% ## Descriptions, canonical / open graph tags ## %>
     <% canonical_base   = request.path %>
     <% canonical        = "#{ENV['PRODUCTION_URL']}#{canonical_base}" %>
     <% author_twitter   = ENV['AUTHOR_TWITTER'] %>
@@ -26,8 +26,8 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@<%= author_twitter %>">
     <meta name="twitter:creator" content="@<%= author_twitter %>">
+    <% ### %>
 
-    <% ####### %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'vendor', 'application', media: 'all' %>
