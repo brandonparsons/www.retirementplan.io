@@ -2,14 +2,18 @@
 // BLOG GENERIC //
 //////////////////
 
+.blog-section {
+  @media (min-width: 992px) {
+    padding-top: 40px;
+  }
+}
+
 .post-meta {
   font-size: 13px;
   margin-bottom: 0px;
 }
 
 .meta-entries {
-  border-bottom: 1px solid #ddd;
-  border-top: 1px solid #ddd;
   margin-top: 10px;
   margin-bottom: 15px;
   padding-top: 5px;
@@ -97,7 +101,7 @@
 
   .post-content {
     padding-top: 20px;
-    padding-left: 40px;
+    // padding-left: 40px;
     border-top: 1px solid #ddd;
     font-size: 18px;
     line-height: 26px;
@@ -105,12 +109,29 @@
       font-weight: 700;
       margin-top: 0px;
     }
-    .post-excerpt { margin-bottom: 10px; }
+    .post-excerpt {
+      margin-bottom: 10px;
+      text-align: left;
+    }
     .read-more {
       margin-top: 20px;
       margin-bottom: 25px;
     }
   }
+
+  // Anything below first breakpoint
+  @media (max-width: 991px) {
+    .post-content {
+      margin-top: 15px;
+
+      .read-more {
+        text-align: center;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+    }
+  }
+
 }
 
 
@@ -121,6 +142,11 @@
 .blog-post {
   font-size: 17px;
   line-height: 32px;
+
+  // Anything below first breakpoint
+  @media (max-width: 991px) {
+    padding-top: 15px;
+  }
 
   h1 {
     font-size: 30px;
@@ -135,6 +161,11 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .bordered {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
   }
 
   .image-attribution {
@@ -163,6 +194,11 @@
 .posts-for-tag > li {
   padding-bottom: 15px;
   margin-bottom: 35px;
+  text-align: left;
 }
 // Need to select only the first-level `li`s - there are sub-lists
 .posts-for-tag > li:not(:last-child) { border-bottom: 1px solid #eee; }
+.tags-list {
+  span { font-size: 15px; }
+  li { font-size: 14px; }
+}

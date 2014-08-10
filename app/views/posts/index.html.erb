@@ -1,58 +1,16 @@
 <% title "Blog" %>
 <% description "RetirementPlan.io blog - Recent posts" %>
 
-<div class='row large-top-padding'>
+<div class='row blog-section'>
 
-  <div class='col-md-3'>
-    <%= render partial: 'posts/signup_widget' %>
-    <%= render partial: 'posts/newsletter_widget' %>
-
-    <div class='widget'>
-      <h4 class='widget-title'><i class='fa fa-tags'>&nbsp;</i>Tags</h4>
-      <ul class='widget-list'>
-        <% Post.all_tags.each do |tag| %>
-          <li><%= link_to tag.titleize, tags_path(tag) %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-
-  <div class='col-md-9'>
-
+  <div class='col-md-9 col-md-push-3'>
     <% @posts.each do |post| %>
 
       <% cache(['blog', 'index', post]) do %>
 
         <div class='row post-loop'>
 
-          <div class='col-md-2'>
-
-            <div class='post-info text-muted'>
-              <h4 class='author-name'>by <%= post.author %></h4>
-
-              <p class='post-meta'>
-                <i class='fa fa-calendar-o'>&nbsp;</i>
-                <%= post.formatted_date %>
-              </p>
-
-              <% primary_tag = post.tags[0] %>
-              <% if primary_tag %>
-                <p class='post-meta'>
-                  <i class='fa fa-archive'></i>
-                  Filed under <%= link_to "#{primary_tag.titleize}", tags_path(primary_tag)%>
-                </p>
-              <% end %>
-
-              <p class='post-meta'>
-                <i class='fa fa-clock-o'></i>
-                <%= reading_time(post.html) %>
-              </p>
-
-            </div> <!-- post-info -->
-
-          </div> <!-- col-md-3 -->
-
-          <div class='col-md-10 post-content'>
+          <div class='col-md-10 col-md-push-2 post-content'>
             <h2><%= link_to post.title, post.path %></h2>
             <p class='post-excerpt'><%= post.excerpt %></p>
 
@@ -61,6 +19,36 @@
             </p>
 
           </div>
+
+          <div class='col-md-2 col-md-pull-10'>
+
+            <div class='post-info text-muted'>
+              <h4 class='author-name'>by <%= post.author %></h4>
+
+              <ul class='post-meta list-unstyled list-inline'>
+                <li>
+                  <i class='fa fa-calendar-o'>&nbsp;</i>
+                  <%= post.formatted_date %>
+                </li>
+
+                <% primary_tag = post.tags[0] %>
+                <% if primary_tag %>
+                  <li>
+                    <i class='fa fa-archive'></i>
+                    Filed under <%= link_to "#{primary_tag.titleize}", tags_path(primary_tag)%>
+                  </li>
+                <% end %>
+
+                <li>
+                  <i class='fa fa-clock-o'></i>
+                  <%= reading_time(post.html) %>
+                </li>
+
+              </ul>
+            </div> <!-- post-info -->
+
+          </div>
+
         </div> <!-- row -->
 
       <% end #cache %>
@@ -76,6 +64,20 @@
         <%= rel_next_prev_link_tags @posts %>
       <% end %>
     </div>
-
   </div> <!-- col-md-9 -->
+
+  <div class='col-md-3 col-md-pull-9'>
+    <%= render partial: 'posts/signup_widget' %>
+    <%= render partial: 'posts/newsletter_widget' %>
+
+    <div class='widget'>
+      <h4 class='widget-title'><i class='fa fa-tags'>&nbsp;</i>Tags</h4>
+      <ul class='widget-list'>
+        <% Post.all_tags.each do |tag| %>
+          <li><%= link_to tag.titleize, tags_path(tag) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
 </div>

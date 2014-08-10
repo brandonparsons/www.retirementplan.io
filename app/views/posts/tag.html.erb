@@ -1,24 +1,9 @@
 <% title "Posts tagged '#{@tag.titleize}'" %>
 <% description "RetirementPlan.io blog posts tagged #{@tag.titleize}" %>
 
-<div class='row large-top-padding'>
+<div class='row blog-section'>
 
-  <div class='col-md-3'>
-    <%= render partial: 'posts/signup_widget' %>
-    <%= render partial: 'posts/newsletter_widget' %>
-
-    <div class='widget'>
-      <h4 class='widget-title'><i class='fa fa-tags'>&nbsp;</i>Tags</h4>
-      <ul class='widget-list'>
-        <% Post.all_tags.each do |tag| %>
-          <li><%= link_to tag.titleize, tags_path(tag) %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-
-  <div class='col-md-9'>
-
+  <div class='col-md-9 col-md-push-3'>
     <h1 class='text-center'>Posts tagged '<%= @tag.titleize %>'</h1>
     <hr>
 
@@ -50,12 +35,15 @@
               </ul>
             </div>
 
-            <i class='fa fa-tags'></i>&nbsp;Tags:
-            <ul>
-              <% post.tags.each do |tag| %>
-                <li><%= link_to tag.titleize, tags_path(tag) %></li>
-              <% end %>
-            </ul>
+            <div class='tags-list'>
+              <i class='fa fa-tags'></i>
+              <span>&nbsp;Tags:</span>
+              <ul>
+                <% post.tags.each do |tag| %>
+                  <li><%= link_to tag.titleize, tags_path(tag) %></li>
+                <% end %>
+              </ul>
+            </div>
           </li>
 
         <% end # cache %>
@@ -69,6 +57,20 @@
         <%= rel_next_prev_link_tags @posts %>
       <% end %>
     </div>
-
   </div>
+
+  <div class='col-md-3 col-md-pull-9'>
+    <%= render partial: 'posts/signup_widget' %>
+    <%= render partial: 'posts/newsletter_widget' %>
+
+    <div class='widget'>
+      <h4 class='widget-title'><i class='fa fa-tags'>&nbsp;</i>Tags</h4>
+      <ul class='widget-list'>
+        <% Post.all_tags.each do |tag| %>
+          <li><%= link_to tag.titleize, tags_path(tag) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
 </div>
