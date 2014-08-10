@@ -64,17 +64,17 @@
 
 // Tiny Devices only
 @media (max-width: 320px) {
-  .navbar-brand {
-    line-height: 10px;
-    b {font-size: 60%;}
-    img {
-      width: 230px;
-      padding-top: 3px;
-    }
-  }
   #navigation {
     padding-top: 0px;
     padding-bottom: 0px;
+    .navbar-brand {
+      line-height: 10px;
+      b {font-size: 60%;}
+      img {
+        width: 230px;
+        padding-top: 3px;
+      }
+    }
   }
 
   #main-benefits h1 {
@@ -84,8 +84,17 @@
 }
 
 /* Small devices (up to 768px) */
-@media (max-width: 768px) {
-  .navbar-brand b {font-size: 75%;}
+@media (max-width: 767px) {
+  #navigation {
+    .navbar-brand b {font-size: 75%;}
+    .navbar-form {
+      float: none !important;
+      border: none;
+      padding-right: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  }
 
   #home-first-section {
     h1 { font-size: 36px; }
