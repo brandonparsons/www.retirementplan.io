@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'digest'
+require 'uri'
 
 class Post
 
@@ -67,7 +68,7 @@ class Post
 
       # Tag pages
       all_tags.each do |tag|
-        Faraday.new(url: ENV['PRODUCTION_URL'] + "/blog/tags/#{tag}" ).get
+        Faraday.new(url: ENV['PRODUCTION_URL'] + "/blog/tags/#{URI.escape tag}" ).get
       end
     end
 
