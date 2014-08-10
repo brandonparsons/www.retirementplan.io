@@ -57,11 +57,11 @@ module RetirementPlanIo
       # r302      '/wiki/Greg_Jastrab',   '/greg'
       # r301      %r{/wiki/(\w+)_\w+},    '/$1'
 
-      # BKP: Added on May-18-2014, Scott had incorrect spelling on title, had
+      # BKP (May-18-2014): Scott had incorrect spelling on title, had
       # already posted to Facebook before noticing.... Re-write here as can't control external links
       r301 '/blog/2014/05/want-good-retirement-planning-advice-ask-a-millenial', '/blog/2014-05-want-good-retirement-planning-advice-ask-a-millennial'
 
-      # BKP: Old blog URL structure was /blog/YEAR/MONTH/SLUG, changing to /blog/YEAR-MONTH-DAY-SLUG
+      # BKP (Aug-6-2014): Old blog URL structure was /blog/YEAR/MONTH/SLUG, changing to /blog/YEAR-MONTH-DAY-SLUG
       # Tried regex replace (r301 %r{^\/blog\/(\d{4})\/(\d{2})\/(.+)$}, "/blog/$1-$2-$3"), but new format uses day
       r301 "/blog/2014/08/portfolio-rebalancing-at-retirementplan-io",            "/blog/2014-08-01-portfolio-rebalancing-at-retirementplan-io"
       r301 "/blog/2014/07/retirementplan-io-in-the-calgary-herald",               "/blog/2014-07-31-retirementplan-io-in-the-calgary-herald"
@@ -73,6 +73,10 @@ module RetirementPlanIo
       r301 "/blog/2014/05/its-time-to-retire-old-way-of-retiring",                "/blog/2014-05-10-its-time-to-retire-old-way-of-retiring"
       r301 "/blog/2014/04/a-brief-update",                                        "/blog/2014-04-18-a-brief-update"
       r301 "/blog/2014/03/welcome-to-retirementplanio",                           "/blog/2014-03-14-welcome-to-retirementplanio"
+
+      # BKP (Aug-8-2014): Scott had capitals in his post slugs. Fixed, redirect old
+      r301 "/blog/2014-05-28-Retirement-ages-around-the-world-and-what-you-get",  "/blog/2014-05-28-retirement-ages-around-the-world-and-what-you-get"
+      r301 "/blog/2014-05-28-Dont-work-and-retire-create-and-inspire",            "/blog/2014-05-28-dont-work-and-retire-create-and-inspire"
     end
 
   end
