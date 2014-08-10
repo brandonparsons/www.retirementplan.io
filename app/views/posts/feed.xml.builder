@@ -11,7 +11,7 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
   Post.feed.each do |post|
     xml.entry do
       xml.title post.title#, :type => :text
-      xml.link "href" => post.path, "rel" => "alternate"#, :type => 'text/html'
+      xml.link "href" => "#{ENV['PRODUCTION_URL']}#{post.path}", "rel" => "alternate"#, :type => 'text/html'
       xml.published post.date.xmlschema
       xml.updated post.updated_at.xmlschema
 
