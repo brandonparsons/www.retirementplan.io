@@ -25,3 +25,9 @@ task :ping_google  do
   end
   puts "Done."
 end
+
+desc "Resets cache, and re-fills by hitting pages"
+task reset_cache: :environment do
+  Rails.cache.clear
+  Post.fill_cache
+end

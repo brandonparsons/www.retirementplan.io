@@ -64,6 +64,11 @@ class Post
       all.each do |post|
         Faraday.new(url: ENV['PRODUCTION_URL'] + post.path).get
       end
+
+      # Tag pages
+      all_tags.each do |tag|
+        Faraday.new(url: ENV['PRODUCTION_URL'] + "/blog/tags/#{tag}" ).get
+      end
     end
 
     def cache_key_for_posts(posts)
