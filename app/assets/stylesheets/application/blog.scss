@@ -123,7 +123,9 @@
   @media (max-width: 991px) {
     .post-content {
       margin-top: 15px;
-
+      .post-title {
+        text-align: center;
+      }
       .read-more {
         text-align: center;
         margin-top: 0px;
