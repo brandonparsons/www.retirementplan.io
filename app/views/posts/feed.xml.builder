@@ -22,9 +22,9 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
         end
       end
 
-      xml.id post.path
+      xml.id "#{ENV['PRODUCTION_URL']}#{post.path}"
       # xml.content post_content_html(post), "type" => "html"
-      xml.content "type" => "html", 'xml:base' => post.path do
+      xml.content "type" => "html", 'xml:base' => "#{ENV['PRODUCTION_URL']}#{post.path}" do
         xml.cdata! post.html
       end
     end
