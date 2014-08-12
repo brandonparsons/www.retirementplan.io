@@ -65,8 +65,8 @@ module RetirementPlanIo
       # Tried regex replace (r301 %r{^\/blog\/(\d{4})\/(\d{2})\/(.+)$}, "/blog/$1-$2-$3"), but new format uses day
       r301 "/blog/2014/08/portfolio-rebalancing-at-retirementplan-io",            "/blog/2014-08-01-portfolio-rebalancing-at-retirementplan-io"
       r301 "/blog/2014/07/retirementplan-io-in-the-calgary-herald",               "/blog/2014-07-31-retirementplan-io-in-the-calgary-herald"
-      r301 "/blog/2014/05/retirement-ages-around-the-world-and-what-you-get",     "/blog/2014-05-28-retirement-ages-around-the-world-and-what-you-get"
-      r301 "/blog/2014/05/dont-work-and-retire-create-and-inspire",               "/blog/2014-05-28-dont-work-and-retire-create-and-inspire"
+      r301 "/blog/2014/05/Retirement-ages-around-the-world-and-what-you-get",     "/blog/2014-05-28-retirement-ages-around-the-world-and-what-you-get"
+      r301 "/blog/2014/05/Dont-work-and-retire-create-and-inspire",               "/blog/2014-05-28-dont-work-and-retire-create-and-inspire"
       r301 "/blog/2014/05/what-are-etfs",                                         "/blog/2014-05-17-what-are-etfs"
       r301 "/blog/2014/05/what-is-monte-carlo-simulation",                        "/blog/2014-05-16-what-is-monte-carlo-simulation"
       r301 "/blog/2014/05/want-good-retirement-planning-advice-ask-a-millennial", "/blog/2014-05-15-want-good-retirement-planning-advice-ask-a-millennial"
@@ -74,7 +74,9 @@ module RetirementPlanIo
       r301 "/blog/2014/04/a-brief-update",                                        "/blog/2014-04-18-a-brief-update"
       r301 "/blog/2014/03/welcome-to-retirementplanio",                           "/blog/2014-03-14-welcome-to-retirementplanio"
 
-      # BKP (Aug-8-2014): Scott had capitals in his post slugs. Fixed, redirect old
+      # BKP (Aug-8-2014): Scott had capitals in his post slugs. Fixed, redirect old, cover no caps for the first two in case they were linked somewhere
+      r301 "/blog/2014/05/retirement-ages-around-the-world-and-what-you-get",     "/blog/2014-05-28-retirement-ages-around-the-world-and-what-you-get"
+      r301 "/blog/2014/05/dont-work-and-retire-create-and-inspire",               "/blog/2014-05-28-dont-work-and-retire-create-and-inspire"
       r301 "/blog/2014-05-28-Retirement-ages-around-the-world-and-what-you-get",  "/blog/2014-05-28-retirement-ages-around-the-world-and-what-you-get"
       r301 "/blog/2014-05-28-Dont-work-and-retire-create-and-inspire",            "/blog/2014-05-28-dont-work-and-retire-create-and-inspire"
     end
