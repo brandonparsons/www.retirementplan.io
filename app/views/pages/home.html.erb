@@ -28,7 +28,7 @@
           <p><span class="badge"><%= number_with_delimiter(simulation_count, :delimiter => ',') %></span> lifetimes simulated, <span class='underlined'>and counting</span>.</p>
         </div>
 
-        <p id='hero-register-button'><a href="<%= ENV['SIGN_UP_PATH'] %>" type="submit" class="btn btn-lg btn-theme3">Register for Free</a></p>
+        <p id='hero-register-button'><a href="<%= ENV['SIGN_UP_PATH'] %>" type="submit" class="btn btn-lg <%= ab_test('home_page_button_colour') %>">Register for Free</a></p>
       </div>
     </div>
 

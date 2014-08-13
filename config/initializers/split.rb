@@ -15,11 +15,13 @@ Split.configure do |config|
   # config.ignore_filter = proc{ |request| CustomExcludeLogic.excludes?(request) }
 
   config.experiments = {
-    # "home_page_button_colour" => {
-    #   alternatives: [
-    #     ""
-    #   ]
-    # }
+    "home_page_button_colour" => {
+      alternatives: [
+        "btn-orange",
+        "btn-green"
+      ],
+      resettable: false
+    },
 
     # "main_header_copy" => {
     #   alternatives: [
