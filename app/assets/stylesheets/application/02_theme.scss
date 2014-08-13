@@ -50,7 +50,7 @@ hr {
   padding: 0;
 }
 
-.btn-theme  {
+.btn-orange  {
    // Standard button. White text on orange background. Inverses colours on hover.
    background-color: $dark-orange;
    border-color:     $dark-orange;
@@ -65,13 +65,20 @@ hr {
 }
 
 // FIXME: (HACK) Required to beat the hover colours in the navbar....
-.navbar-nav .btn-theme {
-  &:hover, &:focus {
-    color: $light-orange !important;
+.navbar-nav {
+  .btn-orange {
+    &:hover, &:focus {
+      color: $light-orange !important;
+    }
+  }
+  .btn-green {
+    &:hover, &:focus {
+      color: $light-green !important;
+    }
   }
 }
 
-.btn-theme2 {
+.btn-footer-cta {
   // Transparent, white letters by default, hovers white /w orange text. Used in
   // the full-width CTA in the footer.
   border-color: #fff;
@@ -86,7 +93,7 @@ hr {
   }
 }
 
-.btn-theme3 {
+.btn-green {
   // Similar to standard theme button, but green instead of orange.
   background-color: $dark-green;
   border-color:     $dark-green;
