@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   get '/terms',       to: 'pages#terms',        as: :terms
 
   get '/sitemap.xml', to: 'misc#sitemap', as: :sitemap, defaults: {format: 'xml'}
-  get '/error'      , to: 'misc#error'
   get '/health'     , to: 'misc#health'
+
+  post '/error' , to: 'misc#error'
 
 
   ###############
