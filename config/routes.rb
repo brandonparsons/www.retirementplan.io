@@ -14,9 +14,17 @@ Rails.application.routes.draw do
   get '/error'      , to: 'misc#error'
   get '/health'     , to: 'misc#health'
 
+
+  ###############
+  # APPLICATION #
+  ###############
+
   get '/app',       to: 'ember#index'
   get '/app*',      to: 'ember#index'
   get '/app/*foo',  to: 'ember#index'
+
+  get '/sign_in',   to: 'ember#sign_in', as: :sign_in
+  get '/sign_up',   to: 'ember#sign_up', as: :sign_up
 
 
   #######
