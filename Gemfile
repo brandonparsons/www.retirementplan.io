@@ -4,9 +4,10 @@ ruby '2.1.2'
 gem 'rails', '4.1.4'
 gem 'pg'
 
-gem 'sucker_punch'
 gem 'redis'
+gem 'sucker_punch'
 gem 'split', require: 'split/dashboard'
+gem 'sidekiq', require: ['sidekiq', 'sidekiq/web'] # Using the www site to host sidekiq admin for API
 
 gem 'classifier'
 gem 'figaro'

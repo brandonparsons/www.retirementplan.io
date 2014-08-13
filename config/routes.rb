@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  ##########
+  # STATIC #
+  ##########
+
   root                to: 'pages#home'
   get '/about',       to: 'pages#about',        as: :about
   get '/disclosures', to: 'pages#disclosures',  as: :disclosures
@@ -14,14 +18,19 @@ Rails.application.routes.draw do
   get '/app*',      to: 'ember#index'
   get '/app/*foo',  to: 'ember#index'
 
+
+  #######
+  # API #
+  #######
+
   scope :api do
     match '/*anything', to: 'proxy#api', via: [:get, :post, :put, :patch, :delete], format: false
   end
 
-  Split::Dashboard.use Rack::Auth::Basic do |username, password|
-    username == ENV['ADMIN_USER'] && password == ENV['ADMIN_PASSWORD']
-  end
-  mount Split::Dashboard, :at => 'split'
+
+  ########
+  # BLOG #
+  ########
 
   scope :blog do
     get "/"                       => 'posts#index', as: :posts
@@ -36,5 +45,27 @@ Rails.application.routes.draw do
 
     post '/update' => 'posts#webhook_update'
   end
+
+
+  #########
+  # ADMIN #
+  #########
+
+  Split::Dashboard.use Rack::Auth::Basic, "Split" do |username, password|
+    username == ENV['ADMIN_USER'] && password == ENV['ADMIN_PASSWORD']
+  end
+  mount Split::Dashboard, at: 'split'
+
+  Sidekiq.configure_client do |config|
+    config.redis = {
+      size:       1,
+      namespace:  'rp-sidekiq', # This depends on the api. project to not change
+      url:        ENV['API_REDIS_URL']
+    }
+  end
+  Sidekiq::Web.use Rack::Auth::Basic, "Sidekiq" do |username, password|
+    username == ENV['ADMIN_USER'] && password == ENV['ADMIN_PASSWORD']
+  end
+  mount Sidekiq::Web, at: 'sidekiq'
 
 end
