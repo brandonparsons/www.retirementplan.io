@@ -5,7 +5,9 @@ setEventHandler = ->
   $('body').on 'click', 'a', (e) ->
     url = $(@).attr('href')
 
-    if isExternalLink(url)
+    if !url?
+      trackInternalLink("href-null-false")
+    else if isExternalLink(url)
       trackOutboundLink(url)
     else # Internal link
       trackInternalLink(url)

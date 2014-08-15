@@ -1,0 +1,24 @@
+//= require jquery
+//= require jquery_ujs
+//= require fastclick
+//= require_tree ./vendor
+//= require_self
+
+
+<% # FASTCLICK # %>
+
+$(document).ready(function() {
+  new FastClick(document.body);
+});
+
+
+<% # Hello.js # %>
+
+var helloSocialConfig = {
+  "facebook": "<%= ENV['FACEBOOK_LOGIN_APP_ID'] %>",
+  "google": "<%= ENV['GOOGLE_LOGIN_CLIENT_ID'] %>"
+};
+hello.init(helloSocialConfig, { "redirect_uri": "/" });
+
+<% # twitter  : window.RetirementPlanENV.twitter_api_key ## NOT USING RIGHT NOW - does not provide email %>
+<% # oauth_proxy:'https://oauth-shim.com/proxy' // You will need this if you try to use Twitter or other OAuth1.0 provider %>

@@ -10,28 +10,37 @@ Rails.application.routes.draw do
   get '/privacy',     to: 'pages#privacy',      as: :privacy
   get '/terms',       to: 'pages#terms',        as: :terms
 
+
+  ################################
+  # MARKETING SITE FUNCTIONALITY #
+  ################################
+
+  get '/health', to: 'misc#health'
+  post '/error', to: 'misc#error'
+
   get '/sitemap.xml', to: 'misc#sitemap', as: :sitemap, defaults: {format: 'xml'}
-  get '/health'     , to: 'misc#health'
 
-  post '/error' , to: 'misc#error'
+  get '/sign_in', to: 'misc#sign_in', as: :sign_in
+  get '/sign_up', to: 'misc#sign_up', as: :sign_up
+
+  post '/complete_sign_in_tests', to: 'misc#complete_sign_in_tests'
 
 
-  ###############
-  # APPLICATION #
-  ###############
+  #####################
+  # EMBER APPLICATION #
+  #####################
 
   get '/app',       to: 'ember#index'
   get '/app*',      to: 'ember#index'
   get '/app/*foo',  to: 'ember#index'
-
-  get '/sign_in',   to: 'ember#sign_in', as: :sign_in
-  get '/sign_up',   to: 'ember#sign_up', as: :sign_up
 
 
   #######
   # API #
   #######
 
+  # We are running the API through the www. site to avoid having to worry about
+  # CORS. Proxying to backend api.retirementplan.io server
   scope :api do
     match '/*anything', to: 'proxy#api', via: [:get, :post, :put, :patch, :delete], format: false
   end

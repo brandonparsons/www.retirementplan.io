@@ -7,23 +7,16 @@ class EmberController < ApplicationController
     render text: index_html
   end
 
-  # Basically a no-op in case you want to track sign-ins in the future, and to
-  # make URL consistent with sign_up
-  def sign_in
-    redirect_to ENV['SIGN_IN_PATH']
-  end
-
-  # Completes any signup A/B tests prior to forwarding on
-  def sign_up
-    finished("home_page_button_colour")
-    redirect_to ENV['SIGN_UP_PATH']
-  end
-
 
   private
 
   def index_html
-    $redis.get "#{deploy_key}:index.html"
+    if Rails.env.development?
+      # Filler HTML content. Looks like sometimes we were requesting the production HTML content... No need to load the app anyway in dev.
+      "<html><p>Development environment - placeholder for ember app index.html.....</p></html>"
+    else
+      $redis.get "#{deploy_key}:index.html"
+    end
   end
 
   # By default serve release, if canary is specified then the latest
