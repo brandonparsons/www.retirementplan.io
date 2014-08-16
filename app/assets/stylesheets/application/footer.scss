@@ -50,13 +50,6 @@
   }
 }
 
-// Also used in blog sidebar
-.newsletter-email-box {
-  max-width: 180px;
-  text-align: center;
-  display: inline-block;
-}
-
 #copyright-links {
   background: #222;
   padding-top: 20px;
@@ -68,4 +61,13 @@
       text-decoration: underline;
     }
   }
+}
+
+@media (max-width: 991px) { // Anything below first breakpoint
+  #copyright-links { text-align: center; }
+  #footer-links {text-align: center; }
+}
+
+@media (min-width: 992px) { // Medium devices (desktops, 992px and up)
+  #footer-links { text-align: right; }
 }

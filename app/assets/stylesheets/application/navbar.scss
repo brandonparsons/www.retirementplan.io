@@ -41,3 +41,38 @@
   padding-left: 15px;
   color: $dark-blue;
 }
+
+// Tiny Devices only
+@media (max-width: 320px) {
+  #navigation {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    .navbar-brand {
+      line-height: 10px;
+      b {font-size: 60%;}
+      img {
+        width: 230px;
+        padding-top: 3px;
+      }
+    }
+  }
+}
+
+// Small devices (up to 768px)
+@media (max-width: 767px) {
+  #navigation {
+    .navbar-brand b {font-size: 75%;}
+    .navbar-form {
+      float: none !important;
+      border: none;
+      padding-right: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  }
+}
+
+// For general tablet layouts
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
+  .navbar-default { letter-spacing: normal; }
+}

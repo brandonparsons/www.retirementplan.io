@@ -5,9 +5,7 @@
     margin-top: 30px;
     font-size: 70px;
   }
-  h3 {
-    font-size: 30px;
-  }
+  h3 { font-size: 30px; }
   h4 {
     padding-top: 10px;
     padding-bottom: 20px;
@@ -24,7 +22,6 @@
       line-height: 20px;
     }
     span.badge { font-size: 15px; }
-    h1 { font-size:2.5em; }
   }
 
 }
@@ -48,7 +45,6 @@
   text-align: center !important;
 }
 
-
 #social-proof-slider {
   background: url("<%= asset_path('theme/bg-ios-linen.jpg') %>") no-repeat center center;
   background-size: cover;
@@ -63,5 +59,37 @@
   h4 {
     padding-top: 15px;
     color: white;
+  }
+}
+
+// Small devices (phones, 480px and smaller)
+@media (max-width: 480px) {
+
+  #main-benefits {
+    .col-md-2 h5, .col-md-2 p { text-align: center; }
+  }
+
+  #app-steps .col-md-4 { padding-top: 0; }
+
+  #social-proof-slider .carousel-inner { margin-bottom: 50px; }
+
+  #call-to-action-banner {
+    padding-bottom: 80px;
+    min-height: 200px;
+
+    h3, button {
+      display: block;
+      margin: 0 auto;
+    }
+
+    a[type="button"] { margin-top: 15px; }
+  }
+}
+
+// Small devices (up to 768px)
+@media (max-width: 767px) {
+  #home-first-section {
+    h1 { font-size: 35px; }
+    h3 { font-size: 24px; }
   }
 }

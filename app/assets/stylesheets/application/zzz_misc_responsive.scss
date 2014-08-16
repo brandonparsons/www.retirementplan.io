@@ -1,0 +1,39 @@
+/////////////////////////////////////////////////
+// IE 10 in Windows 8 and Windows Phone 8 fix
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }
+/////////////////////////////////////////////////
+
+// // Tiny Devices only
+// @media (max-width: 320px) {
+// }
+
+// Small devices (phones - 480px and smaller)
+@media (max-width: 480px) {
+  body { text-align: center; }
+  hr { max-width: 150px; }
+}
+
+// // Small devices (phones/tablets - up to 768px)
+// @media (max-width: 767px) {
+// }
+
+// // Anything below first breakpoint
+// @media (max-width: 991px) {
+// }
+
+// // Medium devices (desktops, 992px and up)
+// @media (min-width: 992px) {
+// }
+
+// // Large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) {
+// }
+
+// For general tablet layouts
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
+  body { text-align: center; }
+}
