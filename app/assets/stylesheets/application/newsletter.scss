@@ -1,0 +1,21 @@
+.newsletter-name-input {
+  // Honeypot
+  position: absolute;
+  left: -5000px;
+}
+
+.newsletter-email-input {
+  max-width: 185px;
+  text-align: center;
+  display: inline-block;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Sidebar subscribe button gets pushed too tight on some screen sizes
+@media (max-width: 343px) {
+  .newsletter-submit-button { margin-top: 10px; }
+}
+@media (min-width: 992px) and (max-width: 1354px) {
+  .newsletter-submit-button { margin-top: 10px; }
+}
+//////////////////////////////////////////////////////////////////////////////

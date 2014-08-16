@@ -34,6 +34,20 @@ class MiscController < ApplicationController
     render json: {status: :success, message: "Completion noted."}
   end
 
+  def mailing_list_subscribe
+    email = params[:email]
+    return missing_parameters unless email.present?
+    return invalid_parameters unless email.match(/.+@.+\..+/i)
+
+    EmailListSubscriber.new.async.perform(email) unless params[:name].present? # Name is a honeypot
+
+    if request.xhr?
+      render json: {success: true, message: 'Subscribed to mailing list'}
+    else
+      redirect_to root_path
+    end
+  end
+
 
   private
 

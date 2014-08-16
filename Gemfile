@@ -2,40 +2,55 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.1.4'
+
 gem 'pg'
 
 gem 'redis'
+# gem 'redis-namespace'
+
 gem 'sucker_punch'
+gem 'sidekiq', require: ['sidekiq', 'sidekiq/web'] # Using the www site to host sidekiq admin for API. Not using sidekiq for background tasks
+
 gem 'split', require: 'split/dashboard'
-gem 'sidekiq', require: ['sidekiq', 'sidekiq/web'] # Using the www site to host sidekiq admin for API
 
 gem 'classifier'
-gem 'figaro'
 gem 'faraday'
 gem 'rack-rewrite'
 gem 'builder' # sitemap.xml
-
-gem 'slim'
 gem 'kaminari'
-gem 'bootstrap-kaminari-views'
+gem 'gibbon'
+gem 'figaro'
 
-##
-# Rendering blog posts
+###############
+# Blog Render #
+###############
 gem 'jekyll'
 gem 'nokogiri'
 gem 'redcarpet'
 gem 'rouge'
-##
 
-gem 'jquery-rails'
+################
+# View Related #
+################
+gem 'bootstrap-kaminari-views'
+gem 'slim'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+
+##############
+# Javascript #
+##############
+gem 'jquery-rails'
 gem 'fastclick-rails'
 
+##########
+# Assets #
+##########
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'execjs'
+
 
 group :production do
   gem 'unicorn'
@@ -52,6 +67,7 @@ group :production do
   gem 'rollbar', require: 'rollbar/rails'
   gem 'newrelic_rpm'
 end
+
 
 group :development do
   gem 'thin'
