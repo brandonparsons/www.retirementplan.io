@@ -38,6 +38,17 @@
   }
 }
 
-@media (max-width: 844px) {
-  .forgot-password { top: 71%; }
+.registration-modal {
+  .form-group { margin-bottom: 5px; }
+  .mailing-list-checkbox { font-size: 0.85em; }
+  .help-block {
+    font-size: 14px;
+    margin-top: 0px;
+    font-style: italic;
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .registration-modal-tabs { margin-top: 10px; }
 }
