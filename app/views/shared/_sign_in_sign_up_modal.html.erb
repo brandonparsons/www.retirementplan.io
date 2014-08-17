@@ -11,113 +11,11 @@
 
       <div class="modal-body">
         <div class="tab-content">
-
-          <!-- Sign In Form -->
-          <div class="tab-pane fade active in" id="BOOTSTRAP-sign-in-tab">
-
-            <button class="btn btn-block btn-social btn-facebook JS-login-with-facebook" data-loading-text="Working...">
-              <i class="fa fa-facebook"></i> Log in with Facebook
-            </button>
-
-            <button class="btn btn-block btn-social btn-google-plus JS-login-with-google" data-loading-text="Working...">
-              <i class="fa fa-google-plus"></i> Log in with Google
-            </button>
-
-            <div class='or-divider first'></div>
-            <div class='or'>OR</div>
-            <div class='or-divider last'></div>
-            <div class='clearfix'></div>
-
-            <form class="form-horizontal" id="JS-sign-in-form">
-              <fieldset>
-
-                <!-- Email input-->
-                <div class="control-group">
-                  <label class="control-label" for="email-sign-in-input">Email:</label>
-                  <div class="controls">
-                    <input id="email-sign-in-input" name="email" class="form-control" type="email" placeholder="me@example.com" required>
+          <%= render partial: 'shared/sign_in_tab_content' %>
+          <%= render partial: 'shared/sign_up_tab_content' %>
                   </div>
                 </div>
 
-                <!-- Password input-->
-                <div class="control-group">
-                  <label class="control-label" for="password-sign-up-input">Password:</label>
-                  <div class="controls">
-                    <input id="password-sign-up-input" name="password" class="form-control" type="password" required>
-                    <span class='forgot-password'><%= link_to "Forgot?", "/app/password_reset" %></span>
                   </div>
                 </div>
-
-                <!-- Button -->
-                <br>
-                <div class="control-group">
-                  <div class="controls">
-                    <button id="JS-sign-in-button" class="btn btn-orange btn-block" data-loading-text="Working...">Sign In</button>
                   </div>
-                </div>
-
-              </fieldset>
-            </form>
-          </div><!-- /signin -->
-
-          <!-- Sign Up Form -->
-          <div class="tab-pane fade" id="BOOTSTRAP-sign-up-tab">
-
-            <button class="btn btn-block btn-social btn-facebook JS-login-with-facebook" data-loading-text="Working...">
-              <i class="fa fa-facebook"></i> Log in with Facebook
-            </button>
-
-            <button class="btn btn-block btn-social btn-google-plus JS-login-with-google" data-loading-text="Working...">
-              <i class="fa fa-google-plus"></i> Log in with Google
-            </button>
-
-            <div class='or-divider first'></div>
-            <div class='or'>OR</div>
-            <div class='or-divider last'></div>
-            <div class='clearfix'></div>
-
-            <form class="form-horizontal" id="JS-sign-up-form">
-              <fieldset>
-
-                <!-- Email input-->
-                <div class="control-group">
-                  <label class="control-label" for="email-sign-up-input">Email:</label>
-                  <div class="controls">
-                    <input id="email-sign-up-input" name="email" class="form-control" type="email" placeholder="me@example.com" required>
-                  </div>
-                </div>
-
-                <!-- Password input-->
-                <div class="control-group">
-                  <label class="control-label" for="password-sign-up-input">Password:</label>
-                  <div class="controls">
-                    <input id="password-sign-up-input" name="password" class="form-control" type="password" required>
-                    <em><small>minimum 8 Characters</small></em>
-                  </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="control-group">
-                  <label class="control-label" for="password-confirmation-sign-up-input">Re-Enter Password:</label>
-                  <div class="controls">
-                    <input id="password-confirmation-sign-up-input" class="form-control" name="password_confirmation" type="password" required>
-                  </div>
-                </div>
-
-                <!-- Button -->
-                <br>
-                <div class="control-group">
-                  <div class="controls">
-                    <button id="JS-sign-up-button" class="btn btn-orange btn-block" data-loading-text="Working...">Sign Up</button>
-                  </div>
-                </div>
-
-              </fieldset>
-            </form>
-          </div><!-- /signup -->
-        </div><!-- /tab-content -->
-      </div><!-- /modal-body -->
-
-    </div><!-- /modal-content -->
-  </div><!-- /modal-dialog -->
-</div><!-- /modal -->
