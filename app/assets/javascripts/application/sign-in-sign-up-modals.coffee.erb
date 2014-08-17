@@ -1,0 +1,308 @@
+# This code is present to facilitate sign in / sign-up from the www. marketing
+# site via modal forms. Make the same calls as the ember API would, then we have
+# to set the localStorage content to match the Ember-Simple-Auth expectations.
+# This code is dependent on:
+# - Ember simple auth localStorage key/value names/entries
+# - Authenticator types "password" and "hello"
+# - Redirect location (currently set to /app/users/dashboard)
+
+
+#########################################
+# Utility methods for sign up / sign in #
+#########################################
+
+setButtonLoading = ($button) ->
+  $button.button('loading')
+
+resetButton = ($button) ->
+  $button.button('reset')
+
+setAuthenticationLocalstorageContent = (authenticationType, userEmail, userID, userToken) ->
+  # Sets the localstorage content to what ember-simple-auth will expect when booting the app
+  window.localStorage.setItem('ember_simple_auth:authenticatorFactory', "authenticator:#{authenticationType}")
+  window.localStorage.setItem('ember_simple_auth:user_email', userEmail)
+  window.localStorage.setItem('ember_simple_auth:user_id', userID)
+  window.localStorage.setItem('ember_simple_auth:user_token', userToken)
+
+redirectToApp = ->
+  # Redirects to the user's dashboard (within the ember app)
+  scheme  = window.location.protocol  # http: | https:
+  host    = window.location.host      # mydomain.com
+  window.location.replace "#{scheme}//#{host}/app/user/dashboard"
+
+resetSocialButtons = ->
+  $(".JS-login-with-facebook").button('reset')
+  $(".JS-login-with-google").button('reset')
+
+extractErrorMessageFrom = (responseJSON) ->
+  if !responseJSON?
+    "We're sorry, something went wrong. Please try again."
+  else if responseJSON.message
+    responseJSON.message
+  else
+    message = "Sorry -"
+    for own key, value of responseJSON
+        message += " that #{key} "
+        message += "#{value},"
+    message = message.substring(0, message.length - 1)
+    message += "."
+    message
+
+extractFormFieldValueFromArraySerialized = (arraySerialized, fieldName) ->
+  fieldEntry = $.grep(arraySerialized, (el) -> el.name == fieldName)
+  if fieldEntry.length > 0
+    fieldEntry[0].value
+  else
+    null
+
+completeSignUpABTests = (cb) ->
+  $.ajax
+    url: '/complete_sign_in_tests'
+    type: 'POST'
+    success: -> cb()
+    error: (jqXHR) ->
+      if Rollbar?
+        Rollbar.error("There was an error completing signup A/B tests (from www modal). Error was: #{JSON.stringify(jqXHR)}");
+      alert "Sorry - something went wrong! Please try again."
+
+signupForMailingList = (email, cb) ->
+  $.ajax
+    url: '/mailing_list_subscribe'
+    type: 'POST'
+    data:
+      email: email
+    success: ->
+      cb()
+    error: (jqXHR) ->
+      if Rollbar?
+        Rollbar.error("There was an error signing up #{email} for the mailing list (from www modal). This probably is not properly resetting buttons etc.... If this happens much at all, clean this up. Error was: #{JSON.stringify(jqXHR)}");
+      alert "Sorry - something went wrong signing you up for the mailing list. Please try again!"
+
+clearHelloJsLocalstorage = ->
+  localStorage.removeItem("hello")
+
+
+#########################################
+# Launching the sign up / sign in modal #
+#########################################
+
+launchSignInSignUpModal = ->
+  $('#JS-sign-in-sign-up-modal').modal();
+
+handleClickWithModal = ($launcherElement, $tabToShow) ->
+  $launcherElement.on 'click', (e) ->
+    e.preventDefault()
+    launchSignInSignUpModal()
+    $tabToShow.tab('show')
+    return false # Prevent further bubbling of the anchor click
+
+
+##########################################
+# Sign in / Sign up via email & password #
+##########################################
+
+handleEmailPasswordSignIn = ($form, $button) ->
+  # User filled out email/password in the form and submitted. Check validity,
+  # sign up for mailing list (if appropriate) set tokens, and redirect into the app.
+
+  $form.on 'submit', (e) ->
+    e.preventDefault()
+
+    # Using serializeArray (vs. just serialize) as we want to extract the mailing
+    # list parameter and just deal with that here, rather than posting to server.
+    arrayFormContent  = $(@).serializeArray()
+    userEmail         = extractFormFieldValueFromArraySerialized(arrayFormContent, 'email')
+    userPassword      = extractFormFieldValueFromArraySerialized(arrayFormContent, 'password')
+    mailingList       = extractFormFieldValueFromArraySerialized(arrayFormContent, 'mailing_list')
+
+    setButtonLoading($button)
+
+    $.ajax
+      type: 'POST'
+      url: '<%= ENV['API'] %>' + '/session'
+      data:
+        email:    userEmail
+        password: userPassword
+      success: (response) ->
+        finishEmailPasswordSignIn = -> # Set up as a function as we may need to do the mailing list first
+          setAuthenticationLocalstorageContent("password", response.user_email, response.user_id, response.user_token)
+          redirectToApp()
+        if mailingList
+          signupForMailingList(userEmail, finishEmailPasswordSignIn)
+        else
+          finishEmailPasswordSignIn()
+      error: (jqXHR) ->
+        if Rollbar?
+          Rollbar.error("There was an error signing someone in (#{userEmail}) from www modal. Error was: #{JSON.stringify(jqXHR)}");
+        resetButton($button)
+        alert extractErrorMessageFrom(jqXHR.responseJSON)
+
+    return false # Prevent actual submission of the form
+
+handleEmailPasswordSignUp = ($form, $button) ->
+  # User filled out email/password/confirmation in sign up the form and
+  # submitted. Create user, sign up for mailing list if appropriate, set tokens,
+  # and redirect into the app.
+
+  $form.on 'submit', (e) ->
+    e.preventDefault()
+
+    # We can't just $.serialize the form, because we need to post under a 'user' hash key.
+    arrayFormContent      = $(@).serializeArray()
+    userEmail             = extractFormFieldValueFromArraySerialized(arrayFormContent, 'email')
+    userPassword          = extractFormFieldValueFromArraySerialized(arrayFormContent, 'password')
+    passwordConfirmation  = extractFormFieldValueFromArraySerialized(arrayFormContent, 'password_confirmation')
+    mailingList           = extractFormFieldValueFromArraySerialized(arrayFormContent, 'mailing_list')
+
+    if userPassword != passwordConfirmation
+      alert "Your password confirmation does not match the provided password."
+      return false
+
+    if userPassword.length < 8
+      alert "Your password must be at least 8 characters."
+      return false
+
+    # Only set to be loading AFTER you've validated the inputs so they don't get stuck
+    setButtonLoading($button)
+
+    # First create the user, and if successful, log them in. (Two distinct AJAX requests)
+    $.ajax
+      type: 'POST'
+      url: '<%= ENV['API'] %>' + '/users'
+      data:
+        user:
+          email:                  userEmail
+          password:               userPassword
+          password_confirmation:  passwordConfirmation
+      success: () -> # User was successfully created
+        $.ajax
+          type: 'POST'
+          url: '<%= ENV['API'] %>' + '/session'
+          data:
+            email:    userEmail
+            password: userPassword
+          success: (responseJSON) -> # Logged user in with creation credentials
+            finishEmailPasswordSignup = -> # Set up as a function as we may need to do the mailing list first
+              completeSignUpABTests( ->
+                setAuthenticationLocalstorageContent("password", responseJSON.user_email, responseJSON.user_id, responseJSON.user_token)
+                redirectToApp()
+              )
+            if mailingList
+              signupForMailingList(userEmail, finishEmailPasswordSignup)
+            else
+              finishEmailPasswordSignup()
+          error: (jqXHR) -> # Error logging the user in
+            if Rollbar?
+              Rollbar.error("There was an error signing someone in after creating a user (#{userEmail}) from www modal. Error was: #{JSON.stringify(jqXHR)}");
+            resetButton($button)
+            alert extractErrorMessageFrom(jqXHR.responseJSON)
+      error: (jqXHR) -> # Error on creating the user
+        if Rollbar?
+          Rollbar.error("There was an error creating a user (#{userEmail}) from www modal. Error was: #{JSON.stringify(jqXHR)}");
+        resetButton($button)
+        alert extractErrorMessageFrom(jqXHR.responseJSON)
+
+    return false # Prevent actual submission of the form
+
+
+###################################
+# Sign in / Sign up via 3rd party #
+###################################
+
+handleOAuthLoginClick = ($button, provider, bothForms) ->
+
+  # On OAuth button clicks, we don't know which form was open (sign-up or
+  # sign-in), therefore we don't know which mailing list checkbox to read. Just
+  # check both, and see if one is clicked.
+  mailingListStatus = ->
+    mailingListChecked = false
+    bothForms.forEach ($thisForm) ->
+      arrayFormContent    = $thisForm.serializeArray()
+      formMailingListVal  = extractFormFieldValueFromArraySerialized(arrayFormContent, 'mailing_list')
+      mailingListChecked  = true if formMailingListVal
+    mailingListChecked
+
+  $button.on 'click', (e) ->
+    # Don't follow through on the button click
+    e.preventDefault()
+
+    # Dirty hack b/c we need to access this from hello.js auth callback, and need the email, so must be inside callback
+    window.__SHOULD_SIGN_UP_FOR_MAILING_LIST__ = mailingListStatus()
+
+    $(@).button('loading')
+    hello(provider).login()
+
+hello.on 'auth.login', (auth) ->
+  extractUserDataFromJson = (json) ->
+    {
+      uid:    json.id
+      name:   json.name
+      email:  json.email
+      image:  json.picture || json.thumbnail
+    }
+
+  helloApiError = ->
+    if Rollbar?
+      Rollbar.warning("There was an error with a 3rd party OAuth login from www modal.");
+    clearHelloJsLocalstorage()
+    resetSocialButtons()
+    alert 'There was an error connecting to your selected third-party service. Please try again later.'
+
+  confirmUserIdentity = (userData) ->
+    $.ajax
+      type: 'POST'
+      url: '<%= ENV['API'] %>' + '/session/check_oauth'
+      data:
+        user: userData
+      success: (response) ->
+        # Hello.js will automatically try to login if there data in localstorage.
+        # This is not the behaviour we want. The ember-simple-auth localStorage
+        # data will be single source of truth for logged-in state.
+        clearHelloJsLocalstorage()
+
+        finishOAuthLogin = ->
+          setAuthenticationLocalstorageContent("hello", response.user_email, response.user_id, response.user_token)
+          redirectToApp()
+
+        if response.is_new_user # Provided by rails backend when user was created from OAuth
+          completeSignUpABTests(finishOAuthLogin)
+        else
+          finishOAuthLogin()
+
+      error: (jqXHR) ->
+        clearHelloJsLocalstorage()
+        resetSocialButtons()
+        alert extractErrorMessageFrom(jqXHR.responseJSON)
+
+  # Get user details
+  hello( auth.network ).api( '/me' ).success( (json) ->
+    userData              = extractUserDataFromJson(json)
+    userData.access_token = auth.authResponse.access_token
+    userData.provider     = auth.network
+
+    # Set up as a function b/c if they wanted to sign up for the mailing list we
+    # need to handle that first.
+    continueWithProcess = ->
+      confirmUserIdentity(userData)
+
+    if window.__SHOULD_SIGN_UP_FOR_MAILING_LIST__
+      signupForMailingList(userData.email, continueWithProcess)
+    else
+      continueWithProcess()
+  , helloApiError)
+
+
+##################################
+# Set handlers on document ready #
+##################################
+
+$ ->
+  handleClickWithModal $(".JS-launches-sign-in-modal"), $("#JS-sign-in-tab-link")
+  handleClickWithModal $(".JS-launches-sign-up-modal"), $("#JS-sign-up-tab-link")
+
+  handleEmailPasswordSignIn $("#JS-sign-in-form"), $("#JS-sign-in-button")
+  handleEmailPasswordSignUp $("#JS-sign-up-form"), $("#JS-sign-up-button")
+
+  bothForms = [ $("#JS-sign-in-form"), $("#JS-sign-up-form") ]
+  handleOAuthLoginClick $(".JS-login-with-facebook"), 'facebook', bothForms
+  handleOAuthLoginClick $(".JS-login-with-google"), 'google', bothForms
