@@ -14,8 +14,8 @@ $(document).ready(function() {
 <% # Hello.js # %>
 var helloSocialConfig = {
   <% # Not using twitter right now - does not provide email. If you start looking in to it, will need to set up OAuth 1 proxy %>
-  "facebook": "<%= ENV['FACEBOOK_LOGIN_APP_ID'] %>",
-  "google": "<%= ENV['GOOGLE_LOGIN_CLIENT_ID'] %>"
+  "facebook": "<%= ENV['FACEBOOK_APP_ID'] %>",
+  "google": "<%= ENV['GOOGLE_APP_ID'] %>"
 };
 var helloOptions = {
   "redirect_uri": "/"
