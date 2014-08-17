@@ -18,6 +18,8 @@ class EmailListSubscriber
     rescue Gibbon::MailChimpError => e
       if e.code == 214 # <email> is already subscribed to list....
         puts e.message
+      elsif e.message.match /has been banned/i
+        puts e.message
       else
         raise e
       end
