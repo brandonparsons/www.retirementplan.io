@@ -66,6 +66,7 @@ completeSignUpABTests = (cb) ->
       alert "Sorry - something went wrong! Please try again."
 
 signupForMailingList = (email, cb) ->
+  ga('send', 'event', 'conversion', 'newsletter')
   $.ajax
     url: '/mailing_list_subscribe'
     type: 'POST'
@@ -80,6 +81,9 @@ signupForMailingList = (email, cb) ->
 
 clearHelloJsLocalstorage = ->
   localStorage.removeItem("hello")
+
+trackSignup = ->
+  ga('send', 'event', 'conversion', 'signup')
 
 
 #########################################
@@ -182,6 +186,7 @@ handleEmailPasswordSignUp = ($form, $button) ->
             email:    userEmail
             password: userPassword
           success: (responseJSON) -> # Logged user in with creation credentials
+            trackSignup()
             finishEmailPasswordSignup = -> # Set up as a function as we may need to do the mailing list first
               completeSignUpABTests( ->
                 setAuthenticationLocalstorageContent("password", responseJSON.user_email, responseJSON.user_id, responseJSON.user_token)
@@ -265,6 +270,7 @@ hello.on 'auth.login', (auth) ->
           redirectToApp()
 
         if response.is_new_user # Provided by rails backend when user was created from OAuth
+          trackSignup()
           completeSignUpABTests(finishOAuthLogin)
         else
           finishOAuthLogin()

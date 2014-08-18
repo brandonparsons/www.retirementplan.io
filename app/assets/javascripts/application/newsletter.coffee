@@ -2,6 +2,8 @@ $ ->
   $(".JS-newsletter-form").on 'submit', (e) ->
     e.preventDefault()
 
+    ga('send', 'event', 'conversion', 'newsletter')
+
     emailInput    = $(".JS-newsletter-email")
     submitButton  = $(".JS-newsletter-submit")
 
