@@ -45,9 +45,7 @@ class ReportSplitExperimentsToSlack
         })
       end
       message = "Active experiment: #{experiment.name}"
-      puts message
-      puts attachments
-      Slack.new.post_message(message, attachments)
+      Slack.new.post_message(message: message, attachments: attachments, channel: '#metrics')
     end
   end
 

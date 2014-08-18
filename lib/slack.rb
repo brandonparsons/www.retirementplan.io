@@ -4,11 +4,11 @@ class Slack
     @url    = "https://#{organization}.slack.com/services/hooks/incoming-webhook?token=#{token}"
   end
 
-  def post_message(message, attachments = nil)
+  def post_message(message: , attachments: nil, channel: '#bot-notifications', username: 'retirementplan-bot')
     payload = {
-      text: message,
-      # channel: "#metrics", ## Defaulting to bot-notifications
-      # username: "yappie", ## Defaulting to retirementplan-bot
+      text:     message,
+      channel:  channel,
+      username: username,
       # icon_url: "https://www.yapp.us/images/yappie_48.gif" ## Defaulting to ghost emoji
     }
     if attachments
