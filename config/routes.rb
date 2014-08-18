@@ -23,8 +23,10 @@ Rails.application.routes.draw do
   get '/sign_in', to: 'misc#sign_in', as: :sign_in
   get '/sign_up', to: 'misc#sign_up', as: :sign_up
 
-  post '/complete_sign_in_tests', to: 'misc#complete_sign_in_tests'
   post '/mailing_list_subscribe', to: 'misc#mailing_list_subscribe'
+
+  post '/complete_sign_in_tests',         to: 'misc#complete_sign_in_tests'
+  post '/blog_driven_newsletter_signup',  to: 'misc#blog_driven_newsletter_signup'
 
 
   #####################

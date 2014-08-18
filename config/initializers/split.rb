@@ -15,33 +15,37 @@ Split.configure do |config|
   # config.ignore_filter = proc{ |request| CustomExcludeLogic.excludes?(request) }
 
   config.experiments = {
+
     "home_page_button_colour" => {
       alternatives: [
         "btn-orange",
         "btn-green"
       ],
-      resettable: false
+      resettable: false,
+      metric: :sign_up,
     },
 
-    # "main_header_copy" => {
-    #   alternatives: [
-    #     "Discover the retirement planning tool you should have had all along.",
-    #     "It's time to retire the old way of retiring.",
-    #     "Just connect and retire your old idea of retiring."
-    #   ],
-    #   resettable: false
-    # },
+    "blog_sidebar_newsletter_text" => {
+      alternatives: [
+        'Ready to learn more about personal finance and retirement planning?',
+        'Sign up for free educational information and product updates!'
+      ],
+      resettable: false,
+      metric: :blog_driven_newsletter_signup,
+    },
 
-    # "main_header_image" => {
-    #   alternatives: [
-    #     'home/main-screenshot.png',
-    #     'home/main-screenshot-1.jpg',
-    #     'home/main-screenshot-2.jpg',
-    #     'home/main-screenshot-3.jpg',
-    #     'home/main-screenshot-4.jpg'
-    #   ],
-    #   resettable: false
-    # }
+    # Old tests that are gone from list:
+    #
+    # Main header copy:
+    #   "Discover the retirement planning tool you should have had all along." ***
+    #   "It's time to retire the old way of retiring."
+    #   "Just connect and retire your old idea of retiring."
+    #
+    # Main header image:
+    #  Laptop screenshot
+    #  Pic of family ***
+    #  Pic of young couple
+    #  Pic of lady looking up and right
 
   }
 

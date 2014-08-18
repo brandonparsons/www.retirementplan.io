@@ -1,6 +1,6 @@
-<div class='widget widget-with-pop'>
+<div class='widget widget-with-pop JS-newsletter-widget'>
   <p class='heavy'>RetirementPlan.io Newsletter</p>
-  <p>Ready to learn more about personal finance and retirement planning?</p>
+  <p><%= ab_test 'blog_sidebar_newsletter_text' %></p>
   <p><small><strong><em>Subscribe now:</em></strong></small></p>
   <%= render partial: 'shared/newsletter_form' %>
 </div>
