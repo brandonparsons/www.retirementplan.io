@@ -5,13 +5,13 @@ class PostsController < ApplicationController
     all_posts   = Post.all
     @posts      = paginated(all_posts)
     # @cache_key  = Post.cache_key_for_posts(@posts)
-    fresh_when etag: @posts, public: true
+    fresh_when etag: @posts
   end
 
   def show
     @post = Post.find params[:id]
     redirect_to posts_path and return unless @post
-    fresh_when etag: @post, last_modified: @post.updated_at, public: true
+    fresh_when etag: @post, last_modified: @post.updated_at
   end
 
   def feed
