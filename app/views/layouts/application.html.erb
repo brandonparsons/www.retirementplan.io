@@ -15,6 +15,10 @@
     <% facebook_app_id  = ENV['FACEBOOK_APP_ID'] %>
     <% description      = yield(:description) %>
 
+    <% if description.present? %>
+      <meta name="description" content="<%= description %>">
+    <% end %>
+
     <link rel="canonical" href="<%= canonical %>">
     <meta property="og:title" content="<%= title %>" />
     <meta property="og:url" content="<%= canonical %>" />
