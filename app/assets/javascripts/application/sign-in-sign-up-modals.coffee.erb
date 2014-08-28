@@ -235,7 +235,15 @@ handleOAuthLoginClick = ($button, provider, bothForms) ->
     window.__SHOULD_SIGN_UP_FOR_MAILING_LIST__ = mailingListStatus()
 
     $(@).button('loading')
-    hello(provider).login()
+
+    if provider == 'facebook'
+      scope = {scope: "public_profile, email"}
+    else if provider == 'google'
+      scope = {scope: "openid profile email"}
+    else
+      scope = {scope: "default"}
+
+    hello(provider).login(scope)
 
 hello.on 'auth.login', (auth) ->
   extractUserDataFromJson = (json) ->
