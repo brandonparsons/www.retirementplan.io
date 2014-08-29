@@ -77,16 +77,4 @@ Rails.application.routes.draw do
   end
   mount Split::Dashboard, at: 'split'
 
-  Sidekiq.configure_client do |config|
-    config.redis = {
-      size:       1,
-      namespace:  'rp-sidekiq', # This depends on the api. project to not change
-      url:        ENV['API_REDIS_URL']
-    }
-  end
-  Sidekiq::Web.use Rack::Auth::Basic, "Sidekiq" do |username, password|
-    username == ENV['ADMIN_USER'] && password == ENV['ADMIN_PASSWORD']
-  end
-  mount Sidekiq::Web, at: 'sidekiq'
-
 end

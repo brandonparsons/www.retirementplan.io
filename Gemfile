@@ -9,7 +9,6 @@ gem 'redis'
 # gem 'redis-namespace'
 
 gem 'sucker_punch'
-gem 'sidekiq', require: ['sidekiq', 'sidekiq/web'] # Using the www site to host sidekiq admin for API. Not using sidekiq for background tasks
 
 gem 'split', require: 'split/dashboard'
 
