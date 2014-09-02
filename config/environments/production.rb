@@ -83,16 +83,17 @@ Rails.application.configure do
 
   ###########
 
-  ActionMailer::Base.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              "smtp.mandrillapp.com",
-    port:                 25,                           # ports 587 and 2525 are also supported with STARTTLS
-    enable_starttls_auto: true,                         # detects and uses STARTTLS
-    user_name:            ENV['MANDRILL_USERNAME'],
-    password:             ENV["MANDRILL_APIKEY"],       # SMTP password is any valid API key
-    authentication:       'login',                      # Mandrill supports 'plain' or 'login'
-    domain:               ENV['MAILER_HOST'],           # your domain to identify your server when connecting
-  }
+  ## NOT USING EMAIL AT THE MOMENT
+  # ActionMailer::Base.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address:              "smtp.mandrillapp.com",
+  #   port:                 25,                           # ports 587 and 2525 are also supported with STARTTLS
+  #   enable_starttls_auto: true,                         # detects and uses STARTTLS
+  #   user_name:            ENV['MANDRILL_USERNAME'],
+  #   password:             ENV["MANDRILL_APIKEY"],       # SMTP password is any valid API key
+  #   authentication:       'login',                      # Mandrill supports 'plain' or 'login'
+  #   domain:               ENV['MAILER_HOST'],           # your domain to identify your server when connecting
+  # }
 
   config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
 
