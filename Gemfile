@@ -3,6 +3,8 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.4'
 
+gem "rack-reverse-proxy", :require => "rack/reverse_proxy"
+
 gem 'pg'
 
 gem 'redis'

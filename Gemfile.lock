@@ -197,6 +197,8 @@ GEM
       rack (>= 0.9.1)
     rack-protection (1.5.3)
       rack
+    rack-reverse-proxy (0.4.4)
+      rack (>= 1.0.0)
     rack-rewrite (1.5.0)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -331,6 +333,7 @@ DEPENDENCIES
   pry-stack_explorer
   quiet_assets
   rack-cache
+  rack-reverse-proxy
   rack-rewrite
   rails (= 4.1.4)
   rails_12factor
