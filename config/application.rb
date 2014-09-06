@@ -84,5 +84,10 @@ module RetirementPlanIo
       r301 "/blog/2014-05-10-its-time-to-retire-old-way-of-retiring",              "/blog/2014-05-10-its-time-to-retire-the-old-way-of-retiring/"
     end
 
+    config.middleware.use Rack::ReverseProxy do
+      reverse_proxy /^\/blog\/?(.*)$/, "#{ENV['BLOG_HOST']}/$1"
+      reverse_proxy /^\/api\/?(.*)$/, "#{ENV['API']}/$1"
+    end
+
   end
 end

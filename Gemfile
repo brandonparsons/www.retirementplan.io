@@ -3,7 +3,7 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.4'
 
-gem "rack-reverse-proxy", require: "rack/reverse_proxy"
+gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 
 gem 'pg'
 
@@ -51,8 +51,9 @@ group :production do
   gem 'memcachier'
   gem 'dalli'
 
-  gem 'heroku-deflater'
   gem 'rack-cache'
+
+  gem 'heroku-deflater'
   gem 'rails_12factor'
 
   gem 'rollbar', require: 'rollbar/rails'
