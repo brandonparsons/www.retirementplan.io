@@ -31,7 +31,7 @@ module RetirementPlanIo
 
     # Precompile additional assets.
     # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-    config.assets.precompile += %w( vendor.js social.js vendor.css )
+    config.assets.precompile += %w( vendor.js vendor.css )
 
     # config.generators do |g|
     #   g.test_framework :rspec, :fixtures => true, :view_specs => false, :helper_specs => false, :routing_specs => false, :controller_specs => true, :request_specs => true

@@ -25,15 +25,6 @@ Split.configure do |config|
       metric: :sign_up,
     },
 
-    "blog_sidebar_newsletter_text" => {
-      alternatives: [
-        'Ready to learn more about personal finance and retirement planning?',
-        'Sign up for free educational information and product updates!'
-      ],
-      resettable: false,
-      metric: :blog_driven_newsletter_signup,
-    },
-
     # Old tests that are gone from list:
     #
     # Main header copy:

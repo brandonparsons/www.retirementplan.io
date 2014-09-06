@@ -22,19 +22,13 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
     }
   end
 
-  # Blog index
-  xml.url{
-    xml.loc(posts_url)
-    xml.changefreq("daily")
-    xml.priority(0.7)
-  }
-
-  # Blog posts
-  Post.all.each do |p|
-    xml.url {
-      xml.loc("#{ENV['PRODUCTION_URL']}#{p.path}")
-      xml.changefreq("weekly")
-      xml.priority(0.5)
+  # Blog
+  RSS::Parser.parse("#{ENV['BLOG_HOST']}/rss/", false).channel.items.map(&:link).each do |post_url|
+    xml.url{
+      xml.loc(post_url)
+      xml.changefreq("monthly")
+      xml.priority(0.8)
     }
   end
+
 end

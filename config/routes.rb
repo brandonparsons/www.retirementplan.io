@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   post '/mailing_list_subscribe', to: 'misc#mailing_list_subscribe'
 
   post '/complete_sign_in_tests',         to: 'misc#complete_sign_in_tests'
-  post '/blog_driven_newsletter_signup',  to: 'misc#blog_driven_newsletter_signup'
 
 
   #####################
@@ -46,25 +45,6 @@ Rails.application.routes.draw do
   # CORS. Proxying to backend api.retirementplan.io server
   scope :api do
     match '/*anything', to: 'proxy#api', via: [:get, :post, :put, :patch, :delete], format: false
-  end
-
-
-  ########
-  # BLOG #
-  ########
-
-  scope :blog do
-    get "/"                       => 'posts#index', as: :posts
-    get "/page/:page"             => 'posts#index'
-
-    get "/tags/:tag"              => 'posts#tag', as: :tags
-    get "/tags/:tag/page/:page"   => 'posts#tag'
-
-    get "/feed.xml" => 'posts#feed',  as: :posts_feed, defaults: {format: 'xml'}
-
-    get "/:id" => 'posts#show'
-
-    post '/update' => 'posts#webhook_update'
   end
 
 

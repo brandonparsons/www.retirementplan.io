@@ -1,3 +1,5 @@
+require 'rss' # For parsing RSS feed in sitemap
+
 class MiscController < ApplicationController
   protect_from_forgery except: [:error]
 
@@ -10,7 +12,7 @@ class MiscController < ApplicationController
   end
 
   def sitemap
-    fresh_when last_modified: Post.last_post_date, public: true
+    expires_in 1.hour, public: true
   end
 
   def sign_in
@@ -45,12 +47,6 @@ class MiscController < ApplicationController
     # A/B tests. Posting via on-page javascript.
     xhr_only
     finish_signup_ab_tests
-    render json: {status: :success, message: "Completion noted."}
-  end
-
-  def blog_driven_newsletter_signup
-    xhr_only
-    finished(:blog_driven_newsletter_signup)
     render json: {status: :success, message: "Completion noted."}
   end
 

@@ -14,4 +14,12 @@ module ApplicationHelper
     render template: "layouts/#{parent_layout}"
   end
 
+  def posts_feed_path
+    "/blog/rss/"
+  end
+
+  def posts_path
+    "/blog/"
+  end
+
 end

@@ -2,10 +2,6 @@ $ ->
   $(".JS-newsletter-form").on 'submit', (e) ->
     e.preventDefault()
 
-    if $(this).parents(".JS-newsletter-widget").length > 0
-      # We were in the blog sidebar, rather than the footer
-      $.post '/blog_driven_newsletter_signup'
-
     ga('send', 'event', 'conversion', 'newsletter')
 
     emailInput    = $(".JS-newsletter-email")

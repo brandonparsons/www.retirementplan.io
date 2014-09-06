@@ -3,7 +3,7 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.4'
 
-gem "rack-reverse-proxy", :require => "rack/reverse_proxy"
+gem "rack-reverse-proxy", require: "rack/reverse_proxy"
 
 gem 'pg'
 
@@ -14,26 +14,16 @@ gem 'sucker_punch'
 
 gem 'split', require: 'split/dashboard'
 
-gem 'classifier'
 gem 'faraday'
 gem 'rack-rewrite'
 gem 'builder' # sitemap.xml
-gem 'kaminari'
 gem 'gibbon'
 gem 'figaro'
 
-###############
-# Blog Render #
-###############
-gem 'jekyll'
-gem 'nokogiri'
-gem 'redcarpet'
-gem 'rouge'
 
 ################
 # View Related #
 ################
-gem 'bootstrap-kaminari-views'
 gem 'slim'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
