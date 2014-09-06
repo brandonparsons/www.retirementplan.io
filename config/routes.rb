@@ -37,17 +37,6 @@ Rails.application.routes.draw do
   get '/app/*foo',  to: 'ember#index'
 
 
-  #######
-  # API #
-  #######
-
-  # We are running the API through the www. site to avoid having to worry about
-  # CORS. Proxying to backend api.retirementplan.io server
-  scope :api do
-    match '/*anything', to: 'proxy#api', via: [:get, :post, :put, :patch, :delete], format: false
-  end
-
-
   #########
   # ADMIN #
   #########
