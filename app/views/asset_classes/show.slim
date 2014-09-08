@@ -1,0 +1,24 @@
+- title "Asset Classes - #{@asset_class.description}"
+
+.row
+
+  .col-md-10.col-md-offset-1
+
+    .page-header.text-center
+      h1 = @asset_class.description
+      small = @asset_class.asset_type.titleize
+
+    p = @asset_class.overview
+
+    p
+      | The following ETFs are available for investing in this asset class:
+      ul
+        - @asset_class.etfs.each do |etf|
+          li
+            a href=etf_path(id: etf.id)
+              = etf.description
+              | &nbsp;(
+              em= etf.ticker
+              | )
+
+    p = link_to "#{fa_icon 'chevron-left'}&nbsp;Back to asset classes".html_safe, asset_classes_path

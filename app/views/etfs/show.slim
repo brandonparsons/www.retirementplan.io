@@ -1,0 +1,23 @@
+- title "ETFs - #{@etf.description}"
+
+.row
+
+  .col-md-10.col-md-offset-1
+
+    .page-header.text-center
+      h1 = @etf.description
+      small = @etf.ticker
+
+    p
+      strong Fund Summary:&nbsp;
+      = @data.fund_summary
+    p
+      strong Fund MER&nbsp;
+      em
+        | (Management Expense Ratio): &nbsp;
+      = @data.fund_mer
+
+    p style="text-align: center;"
+      #JS-etf-close-prices-chart
+
+    p = link_to "#{fa_icon 'chevron-left'}&nbsp;Back to #{@asset_class.description}".html_safe, asset_class_path(@asset_class)

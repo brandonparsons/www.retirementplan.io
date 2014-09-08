@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get '/privacy',     to: 'pages#privacy',      as: :privacy
   get '/terms',       to: 'pages#terms',        as: :terms
 
+  resources :asset_classes, only: [:index, :show]
+  resources :etfs, only: [:show]
+
 
   ################################
   # MARKETING SITE FUNCTIONALITY #

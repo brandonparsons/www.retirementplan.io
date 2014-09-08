@@ -1,0 +1,21 @@
+- title "Asset Classes"
+
+.row
+
+  .col-md-10.col-md-offset-1
+
+    .page-header.text-center
+      h1 Asset Classes
+
+    p RetirementPlan.io provides a number of asset classes for you to select from when building your portfolio. Everyone has different preferences, needs, and requirements when it comes to their retirement savings which we try to accomodate.
+
+    p
+      | The following asset classes are currently supported by RetirementPlan.io:
+
+      - @asset_classes_by_type.each_pair do |type, asset_classes|
+        p
+          strong = type.titleize
+          ul
+          - asset_classes.each do |asset_class|
+            li
+              = link_to asset_class.description, asset_class_path(id: asset_class.id)

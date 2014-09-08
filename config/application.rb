@@ -44,12 +44,12 @@ module RetirementPlanIo
     # Autoload lib
     config.autoload_paths += Dir[Rails.root.join('lib', '{**/}')]
 
-    # # Autoload all folders/subdirectories under app/models
-    # config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
+    # Autoload all folders/subdirectories under app/models
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
 
-    # # Autoload all folders under app - rails didn't want to autoload Finance::
-    # # namespace stuff under app/finance/* otherwise.
-    # config.autoload_paths << "#{config.root}/app"
+    # Autoload all folders under app - rails didn't want to autoload Finance::
+    # namespace stuff under app/finance/* otherwise.
+    config.autoload_paths << "#{config.root}/app"
 
     config.middleware.insert 0, 'Rack::Rewrite' do
       # rewrite   '/wiki/John_Trupiano',  '/john'

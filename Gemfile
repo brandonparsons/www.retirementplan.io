@@ -3,7 +3,8 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.4'
 
-gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
+gem 'rack-rewrite'
+gem 'rack-reverse-proxy', require: 'rack/reverse_proxy'
 
 gem 'pg'
 
@@ -14,10 +15,15 @@ gem 'sucker_punch'
 
 gem 'split', require: 'split/dashboard'
 
-gem 'faraday'
-gem 'rack-rewrite'
-gem 'builder' # sitemap.xml
+gem 'yahoo-finance', require: 'yahoo_finance'
 gem 'gibbon'
+
+gem 'hashie'
+gem 'gon'
+gem 'faraday'
+gem 'nokogiri'
+gem 'builder' # sitemap.xml
+
 gem 'figaro'
 
 
@@ -33,6 +39,8 @@ gem 'font-awesome-rails'
 ##############
 gem 'jquery-rails'
 gem 'fastclick-rails'
+gem 'd3_rails'
+gem 'c3-rails'
 
 ##########
 # Assets #
