@@ -32,6 +32,11 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
   end
 
   # Asset Classes
+  xml.url{
+    xml.loc(asset_classes_url)
+    xml.changefreq("monthly")
+    xml.priority(0.8)
+  }
   AssetsService.all.each do |asset_class|
     xml.url{
       xml.loc(asset_class_url(asset_class.id))
