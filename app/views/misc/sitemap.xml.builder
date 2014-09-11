@@ -24,6 +24,11 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
   end
 
   # Blog
+  xml.url{
+    xml.loc("/blog")
+    xml.changefreq("weekly")
+    xml.priority(0.9)
+  }
   RSS::Parser.parse("#{ENV['BLOG_HOST']}/rss/", false).channel.items.map(&:link).each do |post_url|
     xml.url{
       xml.loc(post_url)
@@ -36,13 +41,13 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
   xml.url{
     xml.loc(asset_classes_url)
     xml.changefreq("monthly")
-    xml.priority(0.8)
+    xml.priority(0.7)
   }
   AssetsService.all.each do |asset_class|
     xml.url{
       xml.loc(asset_class_url(asset_class.id))
       xml.changefreq("monthly")
-      xml.priority(0.7)
+      xml.priority(0.6)
     }
   end
 
@@ -51,7 +56,7 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
     xml.url{
       xml.loc(etf_url(etf.id))
       xml.changefreq("monthly")
-      xml.priority(0.7)
+      xml.priority(0.6)
     }
   end
 
