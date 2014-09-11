@@ -49,13 +49,13 @@
   </div><!--/ #main-footer-section -->
 
   <div id="copyright-links" class='row'>
-    <div class="col-md-7">
-      <p class='copyright-test'>Copyright &copy;2012-2014 <a href="<%= root_path %>" alt="RetirementPlan.io Copyright">RetirementPlan.io</a>. All Rights Reserved.</p>
+    <div class="col-md-6">
+      <p class='copyright-test'>Copyright &copy;<%= Time.zone.now.year %> <a href="<%= root_path %>" alt="RetirementPlan.io Copyright">RetirementPlan.io</a>. All Rights Reserved.</p>
     </div>
-    <div class="col-md-5" id='footer-links'>
+    <div class="col-md-6" id='footer-links'>
       <p>
+        <%= link_to "About Us", about_path %> |
         <%= link_to "Blog", posts_path %> |
-        <%= link_to "About", about_path %> |
         <%= link_to "Asset Classes", asset_classes_path %> |
         <%= link_to "Terms", terms_path %> |
         <%= link_to "Privacy", privacy_path %> |

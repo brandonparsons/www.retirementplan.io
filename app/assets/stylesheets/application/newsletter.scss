@@ -12,10 +12,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 // Sidebar subscribe button gets pushed too tight on some screen sizes
-@media (max-width: 343px) {
+@media (max-width: 303px) {
   .newsletter-submit-button { margin-top: 10px; }
 }
-// @media (min-width: 992px) and (max-width: 1354px) {
-//   .newsletter-submit-button { margin-top: 10px; }
-// }
 //////////////////////////////////////////////////////////////////////////////
