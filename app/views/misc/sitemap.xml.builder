@@ -25,7 +25,7 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
 
   # Blog
   xml.url{
-    xml.loc("/blog")
+    xml.loc("#{ENV['PRODUCTION_URL']}/blog")
     xml.changefreq("weekly")
     xml.priority(0.9)
   }
