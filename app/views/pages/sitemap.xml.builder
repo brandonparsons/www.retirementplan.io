@@ -12,6 +12,7 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
   pages_dir = Rails.root.join("app", "views", "pages")
   pages = Dir.glob("#{pages_dir}/*")
   pages.each do |path|
+    next if path.match(/sitemap/i)
     slug = File.basename(path) # e.g. about.html.md
     page_id = slug.match(/^(.*)\.(html|slim|haml).*$/)[1]  # pulls out `about`. A bit of a kluge... may not work for everything but not overly important
     unless page_id == 'home' # /home does not exist - it is mapped to root

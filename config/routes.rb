@@ -1,34 +1,37 @@
 Rails.application.routes.draw do
 
-  ##########
-  # STATIC #
-  ##########
+  #################
+  # CONTENT PAGES #
+  #################
 
   root                to: 'pages#home'
+  get '/health',      to: 'pages#health'
+
   get '/about',       to: 'pages#about',        as: :about
   get '/disclosures', to: 'pages#disclosures',  as: :disclosures
   get '/privacy',     to: 'pages#privacy',      as: :privacy
   get '/terms',       to: 'pages#terms',        as: :terms
 
+  get '/sitemap.xml', to: 'pages#sitemap', as: :sitemap, defaults: {format: 'xml'}
+
   resources :asset_classes, only: [:index, :show]
-  resources :etfs, only: [:show]
+  resources :etfs,          only: [:show]
 
 
   ################################
   # MARKETING SITE FUNCTIONALITY #
   ################################
 
-  get '/health', to: 'misc#health'
   post '/error', to: 'misc#error'
 
-  get '/sitemap.xml', to: 'misc#sitemap', as: :sitemap, defaults: {format: 'xml'}
+  ## Redirects ##
+  get '/sign_in', to: 'redirect#sign_in', as: :sign_in
+  get '/sign_up', to: 'redirect#sign_up', as: :sign_up
 
-  get '/sign_in', to: 'misc#sign_in', as: :sign_in
-  get '/sign_up', to: 'misc#sign_up', as: :sign_up
 
+  ## POST calls ##
   post '/mailing_list_subscribe', to: 'misc#mailing_list_subscribe'
-
-  post '/complete_sign_in_tests',         to: 'misc#complete_sign_in_tests'
+  post '/complete_sign_in_tests', to: 'misc#complete_sign_in_tests'
 
 
   #####################

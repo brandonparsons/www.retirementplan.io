@@ -1,5 +1,11 @@
+require 'rss' # For parsing RSS feed in sitemap
+
 class PagesController < ApplicationController
   layout :resolve_layout
+
+  def health
+    render text: "OK"
+  end
 
   def home;end
 
@@ -10,6 +16,10 @@ class PagesController < ApplicationController
   def privacy;end
 
   def terms;end
+
+  def sitemap
+    expires_in 1.hour, public: true
+  end
 
 
   private
