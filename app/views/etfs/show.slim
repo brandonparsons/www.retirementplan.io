@@ -20,5 +20,7 @@
 
     p style="text-align: center;"
       #JS-etf-close-prices-chart
+      p.help-block.italic
+        small This is weekly adjusted close price data, and is not real time. It is not appropraite for making investment decisions.
 
     p = link_to "#{fa_icon 'chevron-left'}&nbsp;Back to #{@asset_class.description}".html_safe, asset_class_path(@asset_class)
