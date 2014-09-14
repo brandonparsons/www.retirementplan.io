@@ -22,15 +22,10 @@
   padding-top: 40px;
   padding-bottom: 60px;
 
-  #social-links {
-    a {
+  a {
+    color: #f6bb42;
+    &:hover {
       color: white;
-      margin-left: 5px;
-      margin-right: 5px;
-
-      &:hover {
-        color: $dark-blue;
-      }
     }
   }
   h3 {
@@ -45,12 +40,16 @@
   input:focus {
     outline: 0;
   }
+}
+
+#social-links {
   a {
-    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }
 
-#copyright-links {
+#copyright-section {
   background: #222;
   padding-top: 20px;
   font-size: 14px;
@@ -63,8 +62,12 @@
   }
 }
 
+@media (max-width: 320px) { // Phones
+  .small-on-phones { font-size: 75%; }
+}
+
 @media (max-width: 991px) { // Anything below first breakpoint
-  #copyright-links { text-align: center; }
+  #copyright-section { text-align: center; }
   #footer-links {text-align: center; }
 }
 

@@ -5,8 +5,7 @@
     <input type="text" name="name" placeholder="Your name" value="">
   </div>
 
-  <input name='email' type="email" class="form-control newsletter-email-input JS-newsletter-email" placeholder="you@example.com" required>
-
-  <button class="btn btn-orange newsletter-submit-button JS-newsletter-submit" type="submit">Subscribe</button>
+  <input name='email' type="email" class="<%= "form-control #{small ? 'input-sm' : ''} newsletter-email-input JS-newsletter-email" %>" placeholder="you@example.com" required>
+  <button class="<%= "btn btn-orange #{small ? 'btn-sm' : ''} newsletter-submit-button JS-newsletter-submit" %>" type="submit">Subscribe</button>
 
 <% end %>
