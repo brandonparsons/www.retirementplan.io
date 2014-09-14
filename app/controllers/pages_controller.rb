@@ -8,13 +8,10 @@ class PagesController < ApplicationController
   end
 
   def home;end
-
   def about;end
-
+  def tour;end
   def disclosures;end
-
   def privacy;end
-
   def terms;end
 
   def sitemap

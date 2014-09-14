@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/health',      to: 'pages#health'
 
   get '/about',       to: 'pages#about',        as: :about
+  get '/tour',        to: 'pages#tour',         as: :tour
   get '/disclosures', to: 'pages#disclosures',  as: :disclosures
   get '/privacy',     to: 'pages#privacy',      as: :privacy
   get '/terms',       to: 'pages#terms',        as: :terms
