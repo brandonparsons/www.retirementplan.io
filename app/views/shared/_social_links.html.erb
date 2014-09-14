@@ -11,7 +11,7 @@
 
   <div class='col-xs-2'>
     <a class='social-link' href='https://twitter.com/intent/tweet?url=<%= url %>&via=<%= ENV['AUTHOR_TWITTER'] %>' rel='nofollow' target="_blank">
-      <i class='fa fa-twitter-square'></i>
+      <%= fa_icon 'twitter-square' %>
     </a>
   </div>
 
@@ -21,13 +21,13 @@
 
   <div class='col-xs-2'>
     <a class='social-link' href='http://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=<%= encoded_title %>' rel='nofollow' target='_blank'>
-      <i class='fa fa-linkedin-square'></i>
+      <%= fa_icon 'linkedin-square' %>
     </a>
   </div>
 
   <div class='col-xs-2'>
     <a class='social-link' id='email-link' href="mailto:?subject=I thought you might be interested in this page&body=The URL is: <%= url %>" rel='nofollow'>
-      <i class='fa fa-envelope'></i>
+      <%= fa_icon 'envelope' %>
     </a>
   </div>
 </div>

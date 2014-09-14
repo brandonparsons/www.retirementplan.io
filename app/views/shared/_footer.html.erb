@@ -22,11 +22,11 @@
     <div class="col-md-3" id='contact-scroll'>
       <h3>Contact Us</h3>
       <p>
-        <i class="fa fa-map-marker"></i> Calgary AB, Canada <br/>
+        <%= fa_icon 'map-marker' %>&nbsp;&nbsp;Calgary, AB - Canada<br/>
         <% if ENV['AUTHOR_PHONE'].present? %>
-          <i class="fa fa-phone"></i>&nbsp;<%= ENV['AUTHOR_PHONE'] %><br/>
+          <%= fa_icon 'phone', text: ENV['AUTHOR_PHONE'] %><br/>
         <% end %>
-        <i class="fa fa-envelope-o"></i> <a class='email-link' href="mailto:<%= ENV['AUTHOR_EMAIL'] %>?subject=<%= ENV['AUTHOR_EMAIL_CONTACT_SUBJECT'] %>"><%= ENV['AUTHOR_EMAIL'] %></a>
+        <%= fa_icon 'envelope-o' %>&nbsp;&nbsp;<a class='email-link' href="mailto:<%= ENV['AUTHOR_EMAIL'] %>?subject=<%= ENV['AUTHOR_EMAIL_CONTACT_SUBJECT'] %>"><%= ENV['AUTHOR_EMAIL'] %></a>
       </p>
     </div>
 
