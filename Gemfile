@@ -74,6 +74,8 @@ group :development do
 
   gem 'spring'
 
+  gem 'brakeman'
+
   gem 'hirb'
   gem 'awesome_print'
 
