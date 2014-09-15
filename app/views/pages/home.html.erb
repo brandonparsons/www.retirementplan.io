@@ -42,25 +42,25 @@
 
     <div class="col-md-3">
       <i class='fa fa-tasks fa-3x'></i>
-      <h3>Asset Allocation</h3>
+      <h3><%= link_to "Asset Allocation", asset_allocation_path %></h3>
       <p>Select from a range of appropriate portfolios tailored to your risk tolerance. Pick what fits you best.</p>
     </div>
 
     <div class="col-md-3">
       <i class='fa fa-bar-chart-o fa-3x'></i>
-      <h3>Retirement Planning</h3>
+      <h3><%= link_to "Retirement Planning", retirement_planning_path %></h3>
       <p>Perform Monte Carlo simulations to determine if your money should last through retirement. Geared to your individual characteristics and goals.</p>
     </div>
 
     <div class="col-md-3">
       <i class='fa fa-envelope fa-3x'></i>
-      <h3>Instant Notification</h3>
+      <h3><%= link_to "Instant Notification", instant_notification_path %></h3>
       <p>We will constantly track your portfolio and let you know when it drifts out of balance. Simple, easy-to-follow instructions are provided on how to rebalance.</p>
     </div>
 
     <div class="col-md-3">
       <i class='fa fa-lock fa-3x'></i>
-      <h3>Secure</h3>
+      <h3><%= link_to "Secure", security_path %></h3>
       <p>We never need to hold your money - it is always under your control. All of your personal data is secured by industry-standard encryption.</p>
     </div>
 
@@ -73,34 +73,34 @@
     <hr class='extra-bottom-margin'>
 
     <div class='row'>
-    <div class="col-md-6">
-      <ul class='list-checkmarked text-bigger text-left'>
-        <li>
-          <strong>Quick Questionnaire:</strong>
-          Answer a few simple questions to give us a better idea of your risk tolerance and financial goals.
-        </li>
-        <li>
-          <strong>Get Recommendations:</strong>
-          Based on the results of your questionnaire, we generate a customized set of portfolios for you and provide guidance on selection. Whether you are risk averse or open to volatility, you are in the driver's seat.
-        </li>
-        <li>
-          <strong>Simulate Retirement:</strong>
-          Run hundreds of simulated trials of your lifetime using your selected portfolio. We don't just assume your portfolio will grow at 8% per year - we use statistical techniques to provide a range of outcomes.
-        </li>
-        <li>
+      <div class="col-md-6">
+        <ul class='list-checkmarked text-bigger text-left'>
+          <li>
+            <strong>Quick Questionnaire:</strong>
+            Answer a few simple questions to give us a better idea of your risk tolerance and financial goals.
+          </li>
+          <li>
+            <strong>Get Recommendations:</strong>
+            Based on the results of your questionnaire, we generate a customized set of portfolios for you and provide guidance on selection. Whether you are risk averse or open to volatility, you are in the driver's seat.
+          </li>
+          <li>
+            <strong>Simulate Retirement:</strong>
+            Run hundreds of simulated trials of your lifetime using your selected portfolio. We don't just assume your portfolio will grow at 8% per year - we use statistical techniques to provide a range of outcomes.
+          </li>
+          <li>
             <strong>Purchase ETFs:</strong>
-          RetirementPlan.io <em>never</em> has access to your money.  Purchase ETFs through your favourite discount brokerage or at your bank, and then update our records with your holdings.
-        </li>
-        <li>
-          <strong>We track your portfolio.</strong>
-          RetirementPlan.io will track your portfolio and let you know when it is time to rebalance (and <em>exactly</em> how to do it!)
-        </li>
-      </ul>
-    </div>
+            RetirementPlan.io <em>never</em> has access to your money.  Purchase ETFs through your favourite discount brokerage or at your bank, and then update our records with your holdings.
+          </li>
+          <li>
+            <strong>We track your portfolio.</strong>
+            RetirementPlan.io will track your portfolio and let you know when it is time to rebalance (and <em>exactly</em> how to do it!)
+          </li>
+        </ul>
+      </div>
 
-    <div class="col-md-6">
-      <%= image_tag 'home/app-screenshot.png', class: "img-responsive", alt: "App example screenshot" %>
-    </div>
+      <div class="col-md-6">
+        <%= image_tag 'home/app-screenshot.png', class: "img-responsive", alt: "App example screenshot" %>
+      </div>
     </div>
 
     <br>

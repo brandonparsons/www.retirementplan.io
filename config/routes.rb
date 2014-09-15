@@ -7,11 +7,15 @@ Rails.application.routes.draw do
   root                to: 'pages#home'
   get '/health',      to: 'pages#health'
 
-  get '/about',       to: 'pages#about',        as: :about
-  get '/tour',        to: 'pages#tour',         as: :tour
-  get '/disclosures', to: 'pages#disclosures',  as: :disclosures
-  get '/privacy',     to: 'pages#privacy',      as: :privacy
-  get '/terms',       to: 'pages#terms',        as: :terms
+  get '/about',                 to: 'pages#about',                  as: :about
+  get '/asset_allocation',      to: 'pages#asset_allocation',       as: :asset_allocation
+  get '/retirement_planning',   to: 'pages#retirement_planning',    as: :retirement_planning
+  get '/instant_notification',  to: 'pages#instant_notification',   as: :instant_notification
+  get '/security',              to: 'pages#security',               as: :security
+  get '/tour',                  to: 'pages#tour',                   as: :tour
+  get '/disclosures',           to: 'pages#disclosures',            as: :disclosures
+  get '/privacy',               to: 'pages#privacy',                as: :privacy
+  get '/terms',                 to: 'pages#terms',                  as: :terms
 
   get '/sitemap.xml', to: 'pages#sitemap', as: :sitemap, defaults: {format: 'xml'}
 
