@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   get '/health',      to: 'pages#health'
 
   get '/about',                 to: 'pages#about',                  as: :about
-  get '/asset_allocation',      to: 'pages#asset_allocation',       as: :asset_allocation
-  get '/retirement_planning',   to: 'pages#retirement_planning',    as: :retirement_planning
-  get '/instant_notification',  to: 'pages#instant_notification',   as: :instant_notification
+  get '/our-video',             to: 'pages#our_video',              as: :video
+  get '/asset-allocation',      to: 'pages#asset_allocation',       as: :asset_allocation
+  get '/retirement-planning',   to: 'pages#retirement_planning',    as: :retirement_planning
+  get '/instant-notification',  to: 'pages#instant_notification',   as: :instant_notification
   get '/security',              to: 'pages#security',               as: :security
   get '/tour',                  to: 'pages#tour',                   as: :tour
   get '/disclosures',           to: 'pages#disclosures',            as: :disclosures
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
 
   get '/sitemap.xml', to: 'pages#sitemap', as: :sitemap, defaults: {format: 'xml'}
 
-  resources :asset_classes, only: [:index, :show]
+  resources :asset_classes, only: [:index, :show], path: 'asset-classes'
   resources :etfs,          only: [:show]
 
 

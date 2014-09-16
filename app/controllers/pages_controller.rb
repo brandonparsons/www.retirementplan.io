@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 
   def home;end
   def about;end
+  def our_video;end
   def asset_allocation;end
   def retirement_planning;end
   def instant_notification;end
