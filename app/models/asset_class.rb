@@ -12,7 +12,7 @@ class AssetClass
     when "CDN-REALESTATE"
       "ETFs that provide exposure to the Canadian Real Estate market - broadly distributed across the country."
     when "COMMODITIES"
-      "ETFs that provide exposure to various commodiites - generally considered as input to a growing economy."
+      "ETFs that provide exposure to various commodities - generally considered as input to a growing economy."
     when "US-LGCAP-STOCK"
       "ETFs that provide exposure to the equity of large, U.S. based companies."
     when "US-LONG-GOV-BOND"
