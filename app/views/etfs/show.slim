@@ -5,8 +5,9 @@
   .col-md-10.col-md-offset-1
 
     .page-header.text-center
-      h1 = @etf.description
-      small = @etf.ticker
+      h1
+        = @etf.description
+        small = "- #{@etf.ticker}"
 
     p
       strong Fund Summary:&nbsp;

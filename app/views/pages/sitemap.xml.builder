@@ -59,7 +59,7 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
   # ETFs
   EtfsService.all.each do |etf|
     xml.url{
-      xml.loc(etf_url(etf.id))
+      xml.loc(etf_url(etf.ticker))
       xml.changefreq("monthly")
       xml.priority(0.6)
     }

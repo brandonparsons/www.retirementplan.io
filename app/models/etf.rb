@@ -3,7 +3,7 @@ class Etf
   attr_accessor :id, :asset_id, :description, :ticker
 
   def to_param
-    @id
+    @ticker
   end
 
 end

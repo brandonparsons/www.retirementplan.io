@@ -15,7 +15,7 @@
       ul
         - @asset_class.etfs.each do |etf|
           li
-            a href=etf_path(id: etf.id)
+            a href=etf_path(etf)
               = etf.description
               | &nbsp;(
               em= etf.ticker
