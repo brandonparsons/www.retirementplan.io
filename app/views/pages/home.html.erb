@@ -5,25 +5,31 @@
 
   <div id="home-first-section" class="row text-center large-top-padding">
 
-    <div class="col-md-12 text-center">
-      <h3>Welcome to <strong>RetirementPlan.io</strong></h3>
-      <h1><strong>Easy to use</strong>, <strong>do-it-yourself</strong> retirement planning backed by <strong>Nobel Prize-winning</strong> mathematics</h1>
-      <br>
+    <div class='col-md-12'>
+      <div class='jumbotron'>
+
+        <div class="text-center">
+          <h3>Welcome to <strong>RetirementPlan.io</strong></h3>
+          <h1><strong>Easy to use</strong>, <strong>do-it-yourself</strong> retirement planning backed by <strong>Nobel Prize-winning</strong> mathematics</h1>
+          <br>
+        </div>
+
+        <div id="simulation-counter">
+          <p id='hero-register-button'>
+            <a href="<%= sign_up_path %>" type="submit" class="btn btn-lg <%= ab_test('home_page_button_colour') %> JS-launches-sign-up-modal">Plan Your Retirement Now!</a>
+          </p>
+          <br>
+          <p>
+            <% simulation_count = $redis.get $SIMULATION_COUNT_KEY %>
+            <span class="badge"><%= number_with_delimiter(simulation_count, :delimiter => ',') %></span> lifetimes simulated, <span class='italic'>and counting</span>.
+          </p>
+        </div>
+
+      </div>
     </div>
 
-    <div class='row'>
-      <div class="col-md-6 text-center">
-        <a href="//fast.wistia.net/embed/iframe/kqe26o1qad?popover=true" class="wistia-popover[height=360,playerColor=7b796a,width=640]"><img src="https://embed-ssl.wistia.com/deliveries/d8f432e445c0215df34883b1267173ea9d620aea.jpg?image_play_button=true&image_play_button_color=7b796ae0&image_crop_resized=320x180" alt="" /></a>
-        <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/popover-v1.js"></script>
-      </div>
-
-      <div class='col-md-6'>
-        <div class="jumbotron" id="simulation-counter">
-          <% simulation_count = $redis.get $SIMULATION_COUNT_KEY %>
-          <p><span class="badge"><%= number_with_delimiter(simulation_count, :delimiter => ',') %></span> lifetimes simulated, <span class='italic'>and counting</span>.</p>
-          <p id='hero-register-button'><a href="<%= sign_up_path %>" type="submit" class="btn btn-lg <%= ab_test('home_page_button_colour') %> JS-launches-sign-up-modal">Plan Your Retirement!</a></p>
-        </div>
-      </div>
+    <div class="col-md-12 text-center">
+      <iframe src="//fast.wistia.net/embed/iframe/kqe26o1qad" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="360"></iframe>
     </div>
 
   </div> <!-- home-first-section -->
