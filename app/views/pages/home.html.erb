@@ -6,8 +6,8 @@
   <div id="home-first-section" class="row text-center large-top-padding">
 
     <div class="col-md-12 text-center">
-      <h1>Welcome to <b>RetirementPlan.io</b></h1>
-      <h3>Easy, do-it-yourself retirement planning for everyone</h3>
+      <h3>Welcome to <strong>RetirementPlan.io</strong></h3>
+      <h1><strong>Easy to use</strong>, <strong>do-it-yourself</strong> retirement planning backed by <strong>Nobel Prize-winning</strong> mathematics</h1>
       <br>
     </div>
 
@@ -18,16 +18,11 @@
       </div>
 
       <div class='col-md-6'>
-        <p class='lead text-center'>
-          Discover the retirement planning tool you should have had all along.
-        </p>
-
-        <div id='simulation-counter'>
+        <div class="jumbotron" id="simulation-counter">
           <% simulation_count = $redis.get $SIMULATION_COUNT_KEY %>
-          <p><span class="badge"><%= number_with_delimiter(simulation_count, :delimiter => ',') %></span> lifetimes simulated, <span class='underlined'>and counting</span>.</p>
+          <p><span class="badge"><%= number_with_delimiter(simulation_count, :delimiter => ',') %></span> lifetimes simulated, <span class='italic'>and counting</span>.</p>
+          <p id='hero-register-button'><a href="<%= sign_up_path %>" type="submit" class="btn btn-lg <%= ab_test('home_page_button_colour') %> JS-launches-sign-up-modal">Plan Your Retirement!</a></p>
         </div>
-
-        <p id='hero-register-button'><a href="<%= sign_up_path %>" type="submit" class="btn btn-lg <%= ab_test('home_page_button_colour') %> JS-launches-sign-up-modal">Register for Free</a></p>
       </div>
     </div>
 
@@ -36,7 +31,7 @@
 
   <div id="main-benefits" class="row text-center grey-background">
 
-    <h2><span class="heavy">Easy</span> to use, <span class="heavy">effective</span>, backed by <span class="heavy">Nobel Prize-winning mathematics</span>.</h2>
+    <h2>Discover the retirement planning tool you should have had all along.</h2>
     <hr class='extra-bottom-margin'>
 
     <div class="col-md-3">
