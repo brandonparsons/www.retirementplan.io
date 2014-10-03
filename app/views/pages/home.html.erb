@@ -16,7 +16,7 @@
 
         <div id="simulation-counter">
           <p id='hero-register-button'>
-            <a href="<%= sign_up_path %>" type="submit" class="btn btn-lg <%= ab_test('home_page_button_colour') %> JS-launches-sign-up-modal">Plan Your Retirement Now!</a>
+            <%= link_to "Plan Your Retirement Now!", pricing_path, class: "btn btn-lg #{ab_test('home_page_button_colour')}" %>
           </p>
           <br>
           <p>

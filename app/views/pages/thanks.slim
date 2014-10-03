@@ -1,0 +1,31 @@
+- title "Thanks!"
+
+- content_for(:head) do
+  <meta name="robots" content="noindex">
+
+- if params[:from] == "signup"
+  - # Arrived via signup, has expressed interest on the pricing page
+  - finished(:sign_up)
+  javascript:
+    ga('send', 'event', 'conversion', 'signup');
+    ga('send', 'event', 'notification', ("attempted-#{params[:plan]}-" + 'signup') );
+  p.lead Membership with RetirementPlan.io is currently closed.
+  p Thank you very much for your interest in RetirementPlan.io! Unfortunately we are not accepting signups at the moment until we can obtain all required regulatory approvals to offer this service to the public.
+  p We will keep your e-mail address on file and will notify you when we are ready to go. Please check your email - we just sent you a note to confirm that you are interested in hearing from us in the future.
+
+- elsif params[:from] == 'signup-no-javascript'
+  - # Arrived via signup, clicked button on pricing page but did not have javascript enabled
+  - # We don't have their email address b/c no javascript, didn't see modal
+  p We appreciate your interest in signing up for RetirementPlan.io. However, we require that Javascript be enabled to use the site.
+  p = "Please enable Javascript, and then #{link_to 'go back and select a plan', pricing_path}.".html_safe
+
+- elsif params[:from] == 'signin'
+  - # Arrived via `sign in` button
+  javascript:
+    ga('send', 'event', 'notification', 'attempted-signin');
+  p.lead Our Public Beta program has come to an end.
+  p We appreciate your interest in RetirementPlan.io, and your participation in the Public Beta program! Our full release will take place after obtaining the necessary regulatory approvals.
+
+- else
+  - # Random visit
+  p Thanks for visiting RetirementPlan.io!

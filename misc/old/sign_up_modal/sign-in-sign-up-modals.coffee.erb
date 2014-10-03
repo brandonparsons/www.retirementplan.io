@@ -56,6 +56,7 @@ extractFormFieldValueFromArraySerialized = (arraySerialized, fieldName) ->
     null
 
 completeSignUpABTests = (cb) ->
+  # Completes A/B signup tests so that we can get info from modal signpus
   $.ajax
     url: '/complete_sign_in_tests'
     type: 'POST'

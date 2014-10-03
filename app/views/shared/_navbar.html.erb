@@ -17,14 +17,11 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown"><a href="<%= sign_in_path %>" class="JS-launches-sign-in-modal"><%= fa_icon 'sign-in', text: 'Sign In' %></a></li>
+        <li class="dropdown"><a href="<%= thanks_path(from: 'signin') %>" class="JS-launches-sign-in-modal"><%= fa_icon 'sign-in', text: 'Sign In' %></a></li>
         <div class="navbar-form pull-left">
-          <a href="<%= sign_up_path %>" type="button" class="btn btn-sm <%= ab_test('home_page_button_colour') %> JS-launches-sign-up-modal">Plan Your Retirement!</a>
+          <%= link_to "Plan your retirement!", pricing_path, class: "btn btn-sm #{ab_test('home_page_button_colour')}" %>
         </div>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
 </div>
-
-<!-- Sign In / Sign Up Modal -->
-<%= render partial: 'shared/sign_in_sign_up_modal' %>

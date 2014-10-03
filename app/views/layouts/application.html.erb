@@ -45,7 +45,9 @@
   </head>
 
   <body data-spy="scroll" data-offset="0" data-target="#navigation">
-    <%= render 'shared/navbar' %>
+    <% unless @hide_chrome %>
+      <%= render 'shared/navbar' %>
+    <% end %>
     <%= render 'shared/chromeframe' %>
     <%= render 'shared/noscript' %>
 

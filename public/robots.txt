@@ -3,4 +3,5 @@ Disallow: /app/
 Disallow: /api/
 Disallow: /split/
 Disallow: /health/
+Disallow: /thanks/
 Sitemap: https://www.retirementplan.io/sitemap.xml

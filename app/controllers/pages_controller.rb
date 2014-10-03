@@ -8,6 +8,9 @@ class PagesController < ApplicationController
   end
 
   def home;end
+
+  def pricing; @hide_chrome = true; end
+  def thanks;end
   def about;end
   def our_video;end
   def asset_allocation;end
@@ -15,6 +18,7 @@ class PagesController < ApplicationController
   def instant_notification;end
   def security;end
   def tour;end
+
   def disclosures;end
   def privacy;end
   def terms;end

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root                to: 'pages#home'
   get '/health',      to: 'pages#health'
 
+  get '/pricing', to: 'pages#pricing', as: :pricing
+  get '/thanks',  to: 'pages#thanks', as: :thanks
+
   get '/about',                 to: 'pages#about',                  as: :about
   get '/our-video',             to: 'pages#our_video',              as: :video
   get '/asset-allocation',      to: 'pages#asset_allocation',       as: :asset_allocation
@@ -14,6 +17,7 @@ Rails.application.routes.draw do
   get '/instant-notification',  to: 'pages#instant_notification',   as: :instant_notification
   get '/security',              to: 'pages#security',               as: :security
   get '/tour',                  to: 'pages#tour',                   as: :tour
+
   get '/disclosures',           to: 'pages#disclosures',            as: :disclosures
   get '/privacy',               to: 'pages#privacy',                as: :privacy
   get '/terms',                 to: 'pages#terms',                  as: :terms
@@ -30,14 +34,9 @@ Rails.application.routes.draw do
 
   post '/error', to: 'misc#error'
 
-  ## Redirects ##
-  get '/sign_in', to: 'redirect#sign_in', as: :sign_in
-  get '/sign_up', to: 'redirect#sign_up', as: :sign_up
-
 
   ## POST calls ##
   post '/mailing_list_subscribe', to: 'misc#mailing_list_subscribe'
-  post '/complete_sign_in_tests', to: 'misc#complete_sign_in_tests'
 
 
   #####################

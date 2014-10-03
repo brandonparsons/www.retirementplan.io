@@ -1,8 +1,9 @@
 class EmailListSubscriber
   include SuckerPunch::Job
 
-  def perform(email)
-    puts "[WORKER][EmailListSubscriber]: Subscribing #{email}....."
+  def perform(email, list)
+    puts "[WORKER][EmailListSubscriber]: Subscribing #{email} to #{list}..."
+
     gb = Gibbon::API.new ENV['MAILCHIMP_API_KEY']
 
     unless email_signups_enabled?
@@ -10,9 +11,17 @@ class EmailListSubscriber
       return false
     end
 
+    if list == "general_list" # Flag name duplicated in misc_controller
+      relevant_mailchimp_list_id = ENV['MAILCHIMP_GENERAL_LIST_ID']
+    elsif list == "launch_list" # Flag name duplicated in misc_controller
+      relevant_mailchimp_list_id = ENV['MAILCHIMP_LAUNCH_LIST_ID']
+    else
+      raise "Invalid list subscribe"
+    end
+
     begin
       gb.lists.subscribe({
-        id:     ENV['MAILCHIMP_GENERAL_LIST_ID'],
+        id:     relevant_mailchimp_list_id,
         email:  { email: email }
       })
     rescue Gibbon::MailChimpError => e

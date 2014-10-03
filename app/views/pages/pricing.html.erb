@@ -1,0 +1,168 @@
+<% title "Plans & Pricing" %>
+<% description "RetirementPlan.io plans & pricing information page" %>
+
+<% # Only want this styling on this page, as we are hiding the navbar %>
+<style type="text/css" media="screen">
+  h1.page-title { margin-top: 0px; }
+</style>
+
+<p class='lead text-center'>Simple pricing, no surprises.  Pay as you go - no long term contract required.</p>
+
+<div id="pricing-table">
+  <div class="row">
+
+    <div class="col-md-4 col-md-push-4 primary-option">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Standard</h3>
+        </div>
+        <div class="panel-body">
+          <div class="the-price">
+            <h2>$25<span class="subscript">/mo</span></h2>
+            <strong><small>14 day FREE Trial</small></strong>
+          </div>
+          <table class="table">
+            <tr>
+              <td>Unlimited Simulations</td>
+            </tr>
+            <tr>
+              <td>Unlimited Expenses</td>
+            </tr>
+            <tr>
+              <td>Standard Asset Algorithm</td>
+            </tr>
+            <tr>
+              <td>Portfolio Tracking</td>
+            </tr>
+            <tr>
+              <td>Notification Service</td>
+            </tr>
+            <tr>
+              <td>Encrypted Communications (SSL)</td>
+            </tr>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <%= link_to "Get Started", thanks_path(from: 'signup-no-javascript'), class: "btn btn-orange btn-lg #{ab_test('home_page_button_colour')} JS-plan-button", id: 'standard-plan', rel: 'nofollow' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-md-pull-4">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Basic</h3>
+        </div>
+        <div class="panel-body">
+          <div class="the-price">
+            <h2>$15<span class="subscript">/mo</span></h2>
+            <strong><small>14 day FREE Trial</small></strong>
+          </div>
+          <table class="table">
+            <tr>
+              <td>100 Simulations / Month</td>
+            </tr>
+            <tr>
+              <td>15 Expenses</td>
+            </tr>
+            <tr>
+              <td>Standard Asset Algorithm</td>
+            </tr>
+            <tr>
+              <td>Portfolio Tracking</td>
+            </tr>
+            <tr>
+              <td>Notification Service</td>
+            </tr>
+            <tr>
+              <td>Encrypted Communications (SSL)</td>
+            </tr>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <%= link_to "Get Started", thanks_path(from: 'signup-no-javascript'), class: "btn btn-orange btn-lg #{ab_test('home_page_button_colour')} JS-plan-button", id: 'basic-plan', rel: 'nofollow' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Premium</h3>
+        </div>
+        <div class="panel-body">
+        <div class="the-price">
+          <h2>$45<span class="subscript">/mo</span></h2>
+          <strong><small>14 day FREE Trial</small></strong>
+        </div>
+        <table class="table">
+          <tr>
+            <td>Unlimited Simulations</td>
+          </tr>
+          <tr>
+            <td>Unlimited Expenses</td>
+          </tr>
+          <tr>
+            <td>Black-Litterman Asset Algorithm</td>
+          </tr>
+          <tr>
+            <td>Portfolio Tracking</td>
+          </tr>
+          <tr>
+            <td>Notification Service</td>
+          </tr>
+          <tr>
+            <td>Encrypted Communications (SSL)</td>
+          </tr>
+        </table>
+        </div>
+        <div class="panel-footer">
+          <%= link_to "Get Started", thanks_path(from: 'signup-no-javascript'), class: "btn btn-orange btn-lg #{ab_test('home_page_button_colour')} JS-plan-button", id: 'premium-plan', rel: 'nofollow' %>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /row -->
+</div><!-- /pricing-table -->
+
+<h3>All plans include:</h3>
+<ul>
+  <li>Risk Tolerance Assessment <em>(quantitative analysis of your risk tolerance using a questionnaire)</em></li>
+  <li>Portfolio Allocation Optimization <em>(assistance selecting a portfolio from a set of pre-optimized options)</em></li>
+  <li>Statistical Retirement Modelling <em>(Monte Carlo simulation using your portfolio and information about you)</em></li>
+  <li>Daily Portfolio Tracking <em>(We check your portfolio every day to see if it is out of balance, and notify you per your preferences)</em></li>
+</ul>
+
+<h3>What types of payment do you accept?</h3>
+<p>We accept all major credit cards for every plan.</p>
+
+<h3>Do I have to sign a long-term contract?</h3>
+<p>There’s no contract on our monthly plans — you just pay as you go, and you can cancel any time without penalty.</p>
+
+<h3>Get in touch</h3>
+<p>If you have any questions, don't hesitate to reach out to us at <a href="mailto:info@retirementplan.io?subject=Pricing Page Question">info@retirementplan.io</a>.</p>
+
+<br>
+
+
+<!-- Email collection modal -->
+<div class="modal fade bs-modal-sm" id="JS-email-collection-modal" tabindex="-1" role="dialog" aria-labelledby="emailCollection" aria-hidden="true">
+
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-body">
+
+        <%= form_tag thanks_path, id: 'JS-email-collection-modal-form', class: 'form-inline' do%>
+          <p>What is your e-mail address?</p>
+          <div class="form-group text-center">
+            <label class='sr-only' for="JS-email-input">Email:</label>
+            <input type="hidden" name="list" value="launch_list">
+            <input type="email" id="JS-email-input" class="form-control" name="email" placeholder="you@example.com" required>
+          </div>
+          <button type='submit' class='btn btn-primary'>Submit</button>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
